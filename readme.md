@@ -10,7 +10,7 @@
 
 ## DB 설계
 
-Collection **UserInfo**
+Collection **UserInfo**(유저 정보)
 
 ```json
 {
@@ -22,7 +22,7 @@ Collection **UserInfo**
 }
 ```
 
-Collection **OXQuestions**
+Collection **OXQuestions**(OX 퀴즈 문항)
 
 ```json
 {
@@ -31,7 +31,7 @@ Collection **OXQuestions**
 }
 ```
 
-Collection **4wayQuestions**
+Collection **4wayQuestions**(4지선다 문항)
 
 ```json
 {
@@ -44,7 +44,7 @@ Collection **4wayQuestions**
 }
 ```
 
-Collection **SubjectiveQuestions**
+Collection **SubjectiveQuestions**(주관식 문항)
 
 ```json
 {
@@ -53,15 +53,35 @@ Collection **SubjectiveQuestions**
 }
 ```
 
-~~주석은 참고용으로만 사용할 것(운용시 주석 삭제 권고)~~
-
-Collection **Teams**
+Collection **Teams**(팀 정보)
 
 ```json
 {
     "teamName": "string",
     "totalPoint": "string"
 }
+```
+
+Collection **GroupInfo**(그룹 정보)
+
+```json
+{
+    "groupName": "string",
+    "introduction": "string"
+}
+```
+
+## 파일 구조
+
+```
+Get-Terra-Server
+	- terra-flask
+		- refact
+			- login.py
+			- connect.py
+		- runserver.py
+	- LICENSE
+	- readme.md
 ```
 
 ## 논의 안건
