@@ -2,11 +2,11 @@
 
 본 문서의 세부 사항은 다음과 같습니다.
 
-|   항목    |                    내용                    |
-| :-------: | :----------------------------------------: |
-| 설계 목적 |                 대회 출전                  |
-| 구축 환경 | Flask, MongoDB, AWS, Docker, Swagger(미정) |
-|  참여자   |               인상민, 김재훈               |
+|   항목    |                      내용                      |
+| :-------: | :--------------------------------------------: |
+| 설계 목적 |                   대회 출전                    |
+| 구축 환경 | Flask, MongoDB, AWS, Docker, ~~Swagger(미정)~~ |
+|  참여자   |                 인상민, 김재훈                 |
 
 ## DB 설계
 
@@ -18,22 +18,38 @@ Collection **UserInfo**
     "userName": "string",
     "password": "string",
     "email": "string",
+    "team": "string"
 }
 ```
 
-Collection **Questions**
+Collection **OXQuestions**
 
 ```json
 {
-    "quizNum": "string",
+    "question": "string",
+    "currectAns": "string"
+}
+```
+
+Collection **4wayQuestions**
+
+```json
+{
+    "question": "string",
+    "firstAnswer": "string",
+    "secondAnswer": "string",
+    "thirdAnswer": "string",
+    "fourthAnswer": "string",
+    "currectAns": "integer"
+}
+```
+
+Collection **SubjectiveQuestions**
+
+```json
+{
     "question": "string",
     "answer": "string",
-    "GTRAP": [					// Got The Right Answer People
-        {
-            "userID": "string",
-            "date": "string"
-        }
-    ]
 }
 ```
 
@@ -44,12 +60,12 @@ Collection **Teams**
 ```json
 {
     "teamName": "string",
-    "totalPoint": "string",
-    "players": [
-        {
-            "userID": "string"
-        }
-    ]
+    "totalPoint": "string"
 }
 ```
 
+## 논의 안건
+
+- DB 서비스 제공자 이용 여부
+  - mlab 등의 서비스를 이용할 것인지 Docker로 Mongo를 구동할 것인지 결정해야
+- 
