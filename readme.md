@@ -76,13 +76,25 @@ Collection **GroupInfo**(그룹 정보)
 ```
 Get-Terra-Server
 	- terra-flask
-		- refact
+		- resource
 			- login.py
 			- connect.py
 		- runserver.py
 	- LICENSE
 	- readme.md
 ```
+
+## API 명세
+
+| HTTP 메소드 |            이름            |       URI       |
+| :---------: | :------------------------: | :-------------: |
+|    POST     |           로그인           |   /api/login    |
+|     GET     |        팀 정보 얻기        | /api/team-info  |
+|    POST     |      팀 정보 수정하기      | /api/team-Ninfo |
+|     GET     | 문제 불러오기(유형은 랜덤) |  /api/question  |
+|     PUT     |     개인정보 수정하기      | /api/user-Ninfo |
+
+
 
 ## 논의 안건
 
