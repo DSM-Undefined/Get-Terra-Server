@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5aa66f7-34de-4c71-8323-998a11874ee0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Server/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/docs/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/docs/account.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/docs/map.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/docs/solve.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/docs/team.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/model/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/view/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Get-Terra-Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Get-Terra-Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terra-flask/refact/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terra-flask/refact/login.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terra-flask/runServer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/docs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/docs/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/docs/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server/docs/account.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,22 +52,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="11" />
+          <entry key="py" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="11" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="614" />
+          <entry key="py" value="1475" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="614" />
+          <entry key="Python" value="1475" />
         </counts>
       </usages-collector>
     </session>
@@ -110,7 +97,23 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server/docs/account.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/docs/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+              <folding>
+                <marker date="1539306391974" expanded="true" signature="212:217" ph="..." />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -152,10 +155,11 @@
         <option value="$PROJECT_DIR$/Server/model/__init__.py" />
         <option value="$PROJECT_DIR$/Server/config.py" />
         <option value="$PROJECT_DIR$/Server/server.py" />
-        <option value="$PROJECT_DIR$/Server/docs/account.py" />
         <option value="$PROJECT_DIR$/Server/docs/team.py" />
         <option value="$PROJECT_DIR$/Server/docs/map.py" />
         <option value="$PROJECT_DIR$/Server/docs/solve.py" />
+        <option value="$PROJECT_DIR$/Server/docs/__init__.py" />
+        <option value="$PROJECT_DIR$/Server/docs/account.py" />
       </list>
     </option>
   </component>
@@ -209,6 +213,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dsm2017\Desktop\source\GitHub\Get-Terra-Server\Server\docs" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -339,8 +348,22 @@
     <entry file="file://$PROJECT_DIR$/Server/docs/solve.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Server/docs/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding>
+            <marker date="1539306391974" expanded="true" signature="212:217" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Server/docs/account.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
