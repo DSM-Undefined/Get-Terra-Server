@@ -76,13 +76,24 @@ Collection **GroupInfo**(그룹 정보)
 ```
 Get-Terra-Server
 	- terra-flask
-		- refact
-			- login.py
+		- resource
+			- Login.py
+			- TeamInfo.py
+			- NewTeamInfo.py
+			- Question.py
+			- NewUserInfo.py
 			- connect.py
 		- runserver.py
 	- LICENSE
 	- readme.md
+	- .gitignore
 ```
+
+## API 명세
+
+API에 대한 자세한 내용은 다음 사이트(swagger)에 정리되어 있다.
+
+[http://ec2.istruly.sexy:1234/docs]()
 
 ## 논의 안건
 
