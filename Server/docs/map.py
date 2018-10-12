@@ -3,7 +3,7 @@ from . import jwt_header, parameter
 WEB_MAP_GET = {
     'tags': ['Map'],
     'description': '웹 현재 맵 상황',
-    'parameters': [jwt_header],
+    'parameters': [],
     'responses': {
         '200': {
             'description': """get 성공
@@ -20,6 +20,26 @@ WEB_MAP_GET = {
                     ['GG', 3],
                     ['스위트팹', -1]
                 }
+            }
+        }
+    }
+}
+
+RANK_MAP_GET = {
+    'tags': ['Map'],
+    'description': '현재 랭킹',
+    'parameters': [],
+    'responses': {
+        '200': {
+            'description': 'get 성공 (랭킹 순 정렬)',
+            'examples': {
+                '': [
+                    ['(팀 번호)', '(점령한 땅의 수)'],
+                    [3, 20],
+                    [1, 16],
+                    [2, 9],
+                    [0, 3]
+                ]
             }
         }
     }
