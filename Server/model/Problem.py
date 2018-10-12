@@ -10,7 +10,7 @@ class ProblemBase(Document):
         'allow_inheritance': True
     }
 
-    problemID = IntField(
+    problemId = IntField(
         primary_key=True
     )
 
@@ -28,10 +28,8 @@ class OXModel(ProblemBase):
     OX 문항 Collection
     """
     meta = {
-        'collection': 'OXProblem'
+        'collection': 'ox_problem'
     }
-
-    pass
 
 
 class SubModel(ProblemBase):
@@ -39,10 +37,8 @@ class SubModel(ProblemBase):
     주관식 문항 Collection
     """
     meta = {
-        'collection': 'SubProblem'
+        'collection': 'write_problem'
     }
-
-    pass
 
 
 class ChoiceModel(ProblemBase):
@@ -50,7 +46,7 @@ class ChoiceModel(ProblemBase):
     4지선다 Collection
     """
     meta = {
-        'collection': 'ChoiceProblem'
+        'collection': 'choice_problem'
     }
 
     choices = ListField(

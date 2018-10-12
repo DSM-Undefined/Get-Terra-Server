@@ -6,10 +6,10 @@ class Club(Document):
     동아리에 관한 정보가 담겨있는 Collection
     """
     meta = {
-        "collection": "Club"
+        "collection": "club"
     }
 
-    clubID = StringField(
+    clubId = StringField(
         primary_key=True
     )
 

@@ -6,10 +6,10 @@ class UserInfo(Document):
     사용자 정보 관련 Collection
     """
     meta = {
-        "collection": "UserInfo"
+        "collection": "user_info"
     }
 
-    userID = StringField(
+    userId = StringField(
         primary_key=True
     )
 

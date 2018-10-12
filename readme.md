@@ -91,46 +91,9 @@ Get-Terra-Server
 
 ## API 명세
 
-API에 대한 자세한 내용은 다음과 같다.
+API에 대한 자세한 내용은 다음 사이트(swagger)에 정리되어 있다.
 
-| HTTP 메소드 |            이름            |       URI       |
-| :---------: | :------------------------: | :-------------: |
-|    POST     |           로그인           |   /api/login    |
-|    POST     |        팀 정보 얻기        | /api/team-info  |
-|     PUT     |      팀 정보 수정하기      | /api/team-Ninfo |
-|     GET     | 문제 불러오기(유형은 랜덤) |  /api/question  |
-|     PUT     |     개인정보 수정하기      | /api/user-Ninfo |
-
-### /api/login
-
-|       required        |   Response    |              비고               |
-| :-------------------: | :-----------: | :-----------------------------: |
-|   userID, password    | JWT(미정)_205 |    ID, PW 로 가입 유저 확인     |
-| userName, email, team |  SUCCESS_205  |            회원가입             |
-|                       |      405      |          로그인 실패시          |
-|                       |      405      | 회원가입 실패시(아이디 중복 등) |
-
-### /api/team-info
-
-| required  |  response   |   비고    |
-| :-------: | :---------: | :-------: |
-| teamName  | SUCCESS_205 | 점수 확인 |
-| groupName | SUCCESS_205 | 설명 확인 |
-|           | FAILURE_405 | 오류 발생 |
-
-### /api/team-Ninfo
-
-| Required | response | 비고 |
-| :------: | :------: | :--: |
-| teamName |          |      |
-|          |          |      |
-|          |          |      |
-
-
-
-### /api/question
-
-### /api/user-Ninfo
+[http://ec2.istruly.sexy:1234/docs]()
 
 ## 논의 안건
 
