@@ -1,6 +1,6 @@
 from flasgger import swag_from
 
-from Server.view.base_resource import BaseResource
+from view.base_resource import BaseResource
 from docs.account import AUTH_POST
 
 

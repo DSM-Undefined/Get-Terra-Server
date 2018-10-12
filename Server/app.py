@@ -1,8 +1,8 @@
 from flask import Flask
 from flasgger import Swagger
 
-from .config import Config
-from .view import Router
+from config import Config
+from view import Router
 
 
 def create_app():
