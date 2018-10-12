@@ -9,7 +9,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config.from_object(Config)
-    Router(app).register_blueprint()
+    Router(app).register()
 
     Swagger(app, template=app.config['SWAGGER_TEMPLATE'])
 

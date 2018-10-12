@@ -2,17 +2,15 @@ from . import parameter, jwt_header
 
 TEAM_GET = {
     'tags': ['Team'],
-    'description': '팀별 팀원 리스트',
+    'description': '팀별 팀원 리스트\n 순서: blue, green, yellow, violet',
     'parameters': [
-        jwt_header,
-        parameter('team', '팀 종류', 'query string')
+        jwt_header
     ],
     'responses': {
         '201': {
             'description': 'get 성공',
             'examples': {
-                '': {
-                    [
+                '': [
                         [
                             'ㅁㅁ',
                             'ㅇㅇ',
@@ -27,7 +25,6 @@ TEAM_GET = {
                             '상미니'
                         ]
                     ]
-                }
             }
         }
     }

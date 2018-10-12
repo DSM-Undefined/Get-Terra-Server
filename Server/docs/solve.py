@@ -35,7 +35,7 @@ SOLVE_POST = {
     'parameters': [
         jwt_header,
         parameter('clubCode', '동아리 아이디', 'url'),
-        parameter('problemId', '문제 아이디', 'url'),
+        parameter('problemId', '문제 아이디', 'query'),
         parameter('answer', '''정답
         주관식: (str) 정답
         OX: (str) O / X
