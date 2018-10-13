@@ -20,3 +20,4 @@ class Club(Document):
     ownTeam = IntField(
         required=True
     )
+    # 현재 이 동아리 지역을 점령하고 있는 팀의 id

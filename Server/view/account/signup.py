@@ -14,20 +14,13 @@ class Signup(BaseResource):
         parser.add_argument('email', type=str, required=True)
         parser.add_argument('id', type=str, required=True)
         parser.add_argument('password', type=str, required=True)
-        email_ = parser.parse_args()['email']
-        id_ = parser.parse_args()['id']
-        password_ = parser.parse_args()['password']
+        payload = parser.parse_args()
         # 이메일, ID, 비밀번호 파싱
 
-        db_201 = {
-            "userId": id_,
-            "email": email_,
-            "password": password_
-        }
-
-        if UserInfo.objects(userId__ne=id_) or UserInfo.object(email__ne=email_):
-            UserInfo(userId=id_, email=email_, password=password_, team=1)
+        if UserInfo.objects(userId__ne=payload['id']) or UserInfo.object(email__ne=payload['email']):
+            UserInfo(userId=payload['id'], email=payload['email'], password=payload['password'], team=-1)
             # DB에 중복되는 닉네임이 없음을 확인하고 신규 회원 정보를 DB에 저장
+            # 초기 유저 정보에는 team을 -1로 두어 현재 소속된 팀이 없음을 명시하였습니다.
             return 201
         else:
             return 205
