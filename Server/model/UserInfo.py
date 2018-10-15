@@ -5,8 +5,9 @@ class UserInfo(Document):
     """
     사용자 정보 관련 Collection
     """
+
     meta = {
-        "collection": "user_info"
+        'collection': 'user-info'
     }
 
     userId = StringField(
@@ -24,3 +25,4 @@ class UserInfo(Document):
     team = IntField(
         required=True
     )
+
