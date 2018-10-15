@@ -1,9 +1,7 @@
-import json
 from flasgger import swag_from
 from flask_restful import reqparse, Resource
 from flask import request, Response, jsonify
 from mongoengine import *
-
 
 from view.base_resource import BaseResource
 from docs.account import SIGNUP_POST

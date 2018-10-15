@@ -1,33 +1,26 @@
 from flasgger import swag_from
-from flask_restful import Resource, reqparse
-from flask import jsonify
+from flask_restful import Resource
+from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token
 
 from view.base_resource import BaseResource
+from model.UserInfo import UserInfo
 from docs.account import AUTH_POST
-from model import UserInfo
 
 
-class Auth(BaseResource):
+class Auth(Resource):
 
     @swag_from(AUTH_POST)
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('id', type=str, required=True)
-        parser.add_argument('password', type=str, required=True)
-        payload = parser.parse_args()
+        payload = request.json
 
-        id_in_db = UserInfo.objects(userId=payload['id'])
-        correct_password = UserInfo.object(password=payload['password'])
-        success_201 = {
-            "accessToken": create_access_token(payload['id']),
-            "refreshToken": create_refresh_token(payload['id'])
-        }
+        for user in UserInfo.objects:
+            if user.userId == payload['id'] and user.password == payload['password']:
+                return {
+                    "accessTocken": create_access_token(identity=payload['id']),
+                    "refreshToken": create_refresh_token(identity=payload['id'])
+                       }, 201
 
-        if id_in_db and correct_password:
-            return jsonify(success_201), 201
+        return {"result": "failure"}, 401
+
         # 로그인 성공시 액세스 토큰 및 리프레시 토큰을 반환
-
-        else:
-            return 401
-        # 로그인 실패시 status code 401 반환

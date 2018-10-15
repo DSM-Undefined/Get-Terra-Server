@@ -44,3 +44,5 @@ class Config:
 
     JSON_AS_ASCII = False
     # UTF-8로 인코딩된 JSON을 반환하기 위해(아마도) 설정
+
+    JWT_SECRET_KEY = "ApR3bx9w03nd4kdp"
