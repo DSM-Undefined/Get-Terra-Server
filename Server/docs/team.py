@@ -7,7 +7,7 @@ TEAM_GET = {
         jwt_header
     ],
     'responses': {
-        '201': {
+        '200': {
             'description': 'get 성공',
             'examples': {
                 '': [

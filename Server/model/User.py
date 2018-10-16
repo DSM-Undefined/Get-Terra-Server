@@ -1,5 +1,4 @@
 from mongoengine import *
-from model.Team import TeamModel
 
 
 class UserModel(Document):
@@ -24,6 +23,6 @@ class UserModel(Document):
     )
 
     team = ReferenceField(
-        document_type=TeamModel,
+        document_type='TeamModel',
         required=True
     )
