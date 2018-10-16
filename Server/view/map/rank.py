@@ -10,10 +10,10 @@ class Rank(BaseResource):
 
     @swag_from(RANK_MAP_GET)
     def get(self):
-        sort_args = [
-            [club.clubId, ] for club in Club.objects()
-        ]
-        # 아직 정렬 기능 미구현
-        # (점령한 땅의 수) 가 뭔지 모르겠음
+        map_ = [[-1, 0], [0, 0], [1, 0], [2, 0], [3, 0]]
 
-        return jsonify(sort_args), 200
+        for club in Club.objects():
+            map_[club.ownTeam + 1][1] += 1
+        map_.sort(key=lambda a: a[1], reverse=True)
+
+        return jsonify(map_), 200
