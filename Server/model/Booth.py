@@ -1,5 +1,4 @@
 from mongoengine import *
-from model.Team import TeamModel
 
 
 class BoothModel(Document):
@@ -19,6 +18,6 @@ class BoothModel(Document):
     )
 
     ownTeam = ReferenceField(
-        document_type=TeamModel,
+        document_type='TeamModel',
         required=True
     )
