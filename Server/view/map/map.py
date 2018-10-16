@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from view.base_resource import BaseResource
 from docs.map import WEB_MAP_GET, ANDROID_MAP_GET, RANK_MAP_GET
-from model.Club import Club
+from model.Booth import BoothModel
 from model.UserInfo import UserInfo
 
 
@@ -13,7 +13,7 @@ class WebMap(BaseResource):
     @swag_from(WEB_MAP_GET)
     def get(self):
         map_ = [
-            [club.clubName, club.ownTeam] for club in Club.objects()
+            [booth.boothName, booth.ownTeam] for booth in BoothModel.objects()
         ]
 
         return jsonify(map_), 200
@@ -29,12 +29,12 @@ class AndroidMap(BaseResource):
             return Response('', 403)
 
         map_ = []
-        for club in Club.objects():
-            if club == -1:
-                map_.append([club.clubName, None])
-            elif club == user.team:
-                map_.append([club.clubName, True])
+        for booth in BoothModel.objects():
+            if booth == -1:
+                map_.append([booth.boothName, None])
+            elif booth == user.team:
+                map_.append([booth.boothName, True])
             else:
-                map_.append([club.clubName, False])
+                map_.append([booth.boothName, False])
 
         return jsonify(map_), 200

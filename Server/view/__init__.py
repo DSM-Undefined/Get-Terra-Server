@@ -19,7 +19,7 @@ class Router:
         self.api.add_resource(Rank, '/rank')
 
         from .solve.solve import Solve
-        self.api.add_resource(Solve, '/solve/<clubId>')
+        self.api.add_resource(Solve, '/solve/<boothId>')
 
         from .team.team import Team
         self.api.add_resource(Team, '/team')

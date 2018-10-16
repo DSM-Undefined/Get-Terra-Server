@@ -1,19 +1,19 @@
 from mongoengine import *
 
 
-class Club(Document):
+class BoothModel(Document):
     """
     동아리에 관한 정보가 담겨있는 Collection
     """
     meta = {
-        "collection": "club"
+        "collection": "booth"
     }
 
-    clubId = StringField(
+    boothId = StringField(
         primary_key=True
     )
 
-    clubName = StringField(
+    boothName = StringField(
         required=True
     )
 

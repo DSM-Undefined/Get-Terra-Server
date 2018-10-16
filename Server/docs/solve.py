@@ -5,14 +5,14 @@ SOLVE_GET = {
     'description': '문제 get',
     'parameters': [
         jwt_header,
-        parameter('clubId', '동아리 아이디', 'url')
+        parameter('boothId', '동아리 아이디', 'url')
     ],
     'responses': {
         '200': {
             'description': '성공',
             'examples': {
                 '': {
-                    'clubId': '동아리 아이디',
+                    'boothId': '동아리 아이디',
                     'problemId': '문제 아이디',
                     'question': '문제 내용',
                     'problemType': '''(int) 0 주관식
@@ -38,7 +38,7 @@ SOLVE_POST = {
     'description': '문제 정답 제출',
     'parameters': [
         jwt_header,
-        parameter('clubCode', '동아리 아이디', 'url'),
+        parameter('boothCode', '동아리 아이디', 'url'),
         parameter('problemId', '문제 아이디'),
         parameter('answer', '''정답
         주관식: (str) 정답

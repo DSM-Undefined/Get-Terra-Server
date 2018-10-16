@@ -1,6 +1,6 @@
 from mongoengine import *
 from model.UserInfo import UserInfo
-from model.Club import Club
+from model.Booth import BoothModel
 
 
 class TeamModel(Document):
@@ -16,6 +16,6 @@ class TeamModel(Document):
     )
 
     captured = ListField(
-        field=Club,
+        field=BoothModel,
         default=[]
     )
