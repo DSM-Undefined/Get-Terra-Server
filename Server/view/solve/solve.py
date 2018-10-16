@@ -15,9 +15,16 @@ class Solve(BaseResource):
     @swag_from(SOLVE_GET)
     @jwt_required
     def get(self, boothId: str):
-        user = UserModel.objects(userId=get_jwt_identity())
+        user = UserModel.objects(userId=get_jwt_identity()).first()
         if not user:
-            return abort(403), 200
+            return abort(403)
+
+        booth = BoothModel.objects(boothId=boothId).first()
+        if not booth:
+            return Response('', 204)
+
+        if booth in user.ownBooth:
+            return Response('', 205)
 
         problem = choice(ProblemBase.objects())
         response = {key: problem['key'] for key in problem}
@@ -35,13 +42,19 @@ class Solve(BaseResource):
 
         problem: ProblemBase = ProblemBase.objects(problemId=payload['problemId']).first()
         booth: BoothModel = BoothModel.objects(boothId=boothId).first()
-        if not all(problem, booth):
+        if not all((problem, booth)):
             return Response('', 204)
 
         if payload['answer'] != problem.answer:
             return Response('', 205)
 
+        booth.ownTeam.ownBooth.remove(booth)
+        booth.ownTeam.save()
+
         booth.ownTeam = user.team
         booth.save()
+
+        user.team.ownBooth.append(booth)
+        user.team.save()
 
         return Response('', 201)
