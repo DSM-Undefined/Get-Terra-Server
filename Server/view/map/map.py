@@ -3,9 +3,9 @@ from flask import jsonify, Response
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from view.base_resource import BaseResource
-from docs.map import WEB_MAP_GET, ANDROID_MAP_GET, RANK_MAP_GET
+from docs.map import WEB_MAP_GET, ANDROID_MAP_GET
 from model.Booth import BoothModel
-from model.UserInfo import UserInfo
+from model.User import UserModel
 
 
 class WebMap(BaseResource):
@@ -24,7 +24,7 @@ class AndroidMap(BaseResource):
     @swag_from(ANDROID_MAP_GET)
     @jwt_required
     def get(self):
-        user: UserInfo = UserInfo.objects(userId=get_jwt_identity())
+        user: UserModel = UserModel.objects(userId=get_jwt_identity())
         if not user:
             return Response('', 403)
 

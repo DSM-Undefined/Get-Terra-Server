@@ -1,5 +1,5 @@
 from mongoengine import *
-from model.UserInfo import UserInfo
+from model.User import UserModel
 from model.Booth import BoothModel
 
 
@@ -11,7 +11,7 @@ class TeamModel(Document):
     )
 
     member = ListField(
-        field=UserInfo,
+        field=UserModel,
         default=[]
     )
 

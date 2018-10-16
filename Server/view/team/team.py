@@ -4,7 +4,7 @@ from flask import abort, jsonify, Response, request
 
 from view.base_resource import BaseResource
 from docs.team import TEAM_GET, TEAM_POST
-from model.UserInfo import UserInfo
+from model.User import UserModel
 from model.Team import TeamModel
 
 
@@ -13,12 +13,12 @@ class Team(BaseResource):
     @swag_from(TEAM_GET)
     @jwt_required
     def get(self):
-        user = UserInfo.objects(userId=get_jwt_identity()).first()
+        user = UserModel.objects(userId=get_jwt_identity()).first()
         if not user:
             abort(403)
 
         team = [[], [], [], []]
-        for user in UserInfo.objects():
+        for user in UserModel.objects():
             if user.team != -1:
                 team[user.team].append(user.userId)
 
@@ -27,7 +27,7 @@ class Team(BaseResource):
     @swag_from(TEAM_POST)
     @jwt_required
     def post(self):
-        user: UserInfo = UserInfo.objects(userId=get_jwt_identity()).first()
+        user: UserModel = UserModel.objects(userId=get_jwt_identity()).first()
         if not user:
             abort(403)
 

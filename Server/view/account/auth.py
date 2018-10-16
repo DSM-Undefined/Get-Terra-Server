@@ -4,7 +4,7 @@ from flask_jwt_extended import create_access_token
 from datetime import timedelta
 
 from view.base_resource import BaseResource
-from model.UserInfo import UserInfo
+from model.User import UserModel
 from docs.account import AUTH_POST
 
 
@@ -14,7 +14,7 @@ class Auth(BaseResource):
     def post(self):
         payload = request.json
 
-        user = UserInfo.objects(userId=payload['id'], password=self.encrypt_password(payload['password']))
+        user = UserModel.objects(userId=payload['id'], password=self.encrypt_password(payload['password']))
         if user:
             return jsonify({"accessTocken": create_access_token(identity=payload['id'], expires_delta=timedelta(days=1))})
 

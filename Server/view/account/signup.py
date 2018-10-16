@@ -3,7 +3,7 @@ from flask import request, Response
 
 from view.base_resource import BaseResource
 from docs.account import SIGNUP_POST
-from model.UserInfo import UserInfo
+from model.User import UserModel
 
 
 class Signup(BaseResource):
@@ -12,10 +12,10 @@ class Signup(BaseResource):
     def post(self):
         payload = request.json
 
-        if UserInfo.objects(userId=payload['id']) or UserInfo.objects(email=payload['email']):
+        if UserModel.objects(userId=payload['id']) or UserModel.objects(email=payload['email']):
             return Response('', 205)
 
-        UserInfo(userId=payload['id'], email=payload['email'], password=self.encrypt_password(payload['password']), team=-1).save()
+        UserModel(userId=payload['id'], email=payload['email'], password=self.encrypt_password(payload['password']), team=-1).save()
 
         return Response('', 201)
         # DB에 중복되는 닉네임이 없음을 확인하고 신규 회원 정보를 DB에 저장

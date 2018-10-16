@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class UserInfo(Document):
+class UserModel(Document):
     """
     사용자 정보 관련 Collection
     """
@@ -25,4 +25,3 @@ class UserInfo(Document):
     team = IntField(
         required=True
     )
-
