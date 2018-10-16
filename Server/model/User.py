@@ -1,4 +1,5 @@
 from mongoengine import *
+from model.Team import TeamModel
 
 
 class UserModel(Document):
@@ -7,7 +8,7 @@ class UserModel(Document):
     """
 
     meta = {
-        'collection': 'user-info'
+        'collection': 'user'
     }
 
     userId = StringField(
@@ -22,6 +23,7 @@ class UserModel(Document):
         required=True
     )
 
-    team = IntField(
+    team = ReferenceField(
+        document_type=TeamModel,
         required=True
     )

@@ -14,10 +14,9 @@ class Auth(BaseResource):
     def post(self):
         payload = request.json
 
-        user = UserModel.objects(userId=payload['id'], password=self.encrypt_password(payload['password']))
+        pw = self.encrypt_password(payload['password'])
+        user: UserModel = UserModel.objects(userId=payload['id'], password=pw).first()
         if user:
-            return jsonify({"accessTocken": create_access_token(identity=payload['id'], expires_delta=timedelta(days=1))})
+            return jsonify({"accessTocken": create_access_token(identity=user.userId, expires_delta=timedelta(days=1))})
 
         return Response('', 401)
-
-        # 로그인 성공시 액세스 토큰 및 리프레시 토큰을 반환
