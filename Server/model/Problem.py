@@ -21,6 +21,9 @@ class ProblemBase(Document):
     content = StringField(
         required=True
     )
+    answer = StringField(
+        required=True
+    )
 
 
 class OXModel(ProblemBase):

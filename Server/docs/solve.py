@@ -12,6 +12,7 @@ SOLVE_GET = {
             'description': '성공',
             'examples': {
                 '': {
+                    'clubId': '동아리 아이디',
                     'problemId': '문제 아이디',
                     'question': '문제 내용',
                     'problemType': '''(int) 0 주관식
@@ -25,6 +26,9 @@ SOLVE_GET = {
                     ]
                 }
             }
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
@@ -35,18 +39,24 @@ SOLVE_POST = {
     'parameters': [
         jwt_header,
         parameter('clubCode', '동아리 아이디', 'url'),
-        parameter('problemId', '문제 아이디', 'query'),
+        parameter('problemId', '문제 아이디'),
         parameter('answer', '''정답
         주관식: (str) 정답
         OX: (str) O / X
-        4지 선다: (int) 정답 번호''', 'json')
+        4지 선다: (int) 정답 번호''')
     ],
     'responses': {
         '201': {
             'description': '정답'
         },
+        '204': {
+            'description:' '잘못된 문제 아이디 또는 잘못된 동아리 아이디'
+        },
         '205': {
             'description': '오답'
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
