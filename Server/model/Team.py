@@ -6,7 +6,7 @@ from model.Booth import BoothModel
 class TeamModel(Document):
     teamId = IntField(
         primary_key=True,
-        min_value=0,
+        min_value=-1,
         max_value=4
     )
 
@@ -15,7 +15,7 @@ class TeamModel(Document):
         default=[]
     )
 
-    captured = ListField(
+    ownBooth = ListField(
         field=BoothModel,
         default=[]
     )
