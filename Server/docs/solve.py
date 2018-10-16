@@ -50,7 +50,7 @@ SOLVE_POST = {
             'description': '정답'
         },
         '204': {
-            'description:' '잘못된 문제 아이디 또는 잘못된 동아리 아이디'
+            'description:': '잘못된 문제 아이디 또는 잘못된 동아리 아이디'
         },
         '205': {
             'description': '오답'
