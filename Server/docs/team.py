@@ -20,12 +20,15 @@ TEAM_GET = {
                             'aa',
                             'dd'
                         ],
-                        None,
+                        [],
                         [
                             '상미니'
                         ]
                     ]
             }
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
@@ -35,14 +38,24 @@ TEAM_POST = {
     'description': '팀 참가',
     'parameters': [
         jwt_header,
-        parameter('team', '팀 종류\n0: blue\n1: green\n2: yellow\n3: violet', 'query string')
+        parameter('team', '''팀 종류
+        0: blue
+        1: green
+        2: yellow
+        3: violet''', 'query string')
     ],
     'responses': {
         '201': {
             'description': '참가 성공'
         },
+        '204': {
+            'description': '이미 팀에 소속되어 있음'
+        },
         '205': {
-            'description': '팀원 초과'
+            'description': '팀원 초과, 잘못된 팀 번호'
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
