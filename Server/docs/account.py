@@ -25,12 +25,11 @@ AUTH_POST = {
         parameter('password', '비밀번호')
     ],
     'responses': {
-        '201': {
+        '200': {
             'description': '로그인 성공',
             'examples': {
                 '': {
-                    'accessToken': '액세스 토오오오큰',
-                    'refreshToken': '리프레시 토오오오큰'
+                    'accessToken': '액세스 토오오오큰'
                 }
             }
         },
