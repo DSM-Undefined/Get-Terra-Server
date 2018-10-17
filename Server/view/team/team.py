@@ -41,3 +41,8 @@ class Team(BaseResource):
         team.save()
 
         return Response('', 201)
+
+    def put(self):
+        for i in range(-1, 5):
+            if not TeamModel.objects(teamId=i).first():
+                TeamModel(teamId=i).save()
