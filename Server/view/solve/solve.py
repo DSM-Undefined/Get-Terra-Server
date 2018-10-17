@@ -14,12 +14,12 @@ class Solve(BaseResource):
 
     @swag_from(SOLVE_GET)
     @jwt_required
-    def get(self, boothId: str):
+    def get(self, boothName: str):
         user = UserModel.objects(userId=get_jwt_identity()).first()
         if not user:
             return abort(403)
 
-        booth = BoothModel.objects(boothId=boothId).first()
+        booth = BoothModel.objects(boothName=boothName).first()
         if not booth:
             return Response('', 204)
 
@@ -28,20 +28,20 @@ class Solve(BaseResource):
 
         problem = choice(ProblemBase.objects())
         response = {key: problem['key'] for key in problem}
-        response['boothId'] = boothId
+        response['boothName'] = boothName
 
         return jsonify(response)
 
     @swag_from(SOLVE_POST)
     @jwt_required
-    def post(self, boothId: str):
+    def post(self, boothName: str):
         user: UserModel = UserModel.objects(userId=get_jwt_identity()).first()
         if not user:
             return abort(403)
         payload: dict = request.json
 
         problem: ProblemBase = ProblemBase.objects(problemId=payload['problemId']).first()
-        booth: BoothModel = BoothModel.objects(boothId=boothId).first()
+        booth: BoothModel = BoothModel.objects(boothName=boothName).first()
         if not all((problem, booth)):
             return Response('', 204)
 

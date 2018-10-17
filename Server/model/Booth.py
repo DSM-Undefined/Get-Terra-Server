@@ -9,11 +9,8 @@ class BoothModel(Document):
         "collection": "booth"
     }
 
-    boothId = StringField(
-        primary_key=True
-    )
-
     boothName = StringField(
+        primary_key=True,
         required=True
     )
 

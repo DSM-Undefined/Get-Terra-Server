@@ -5,14 +5,14 @@ SOLVE_GET = {
     'description': '문제 get',
     'parameters': [
         jwt_header,
-        parameter('boothId', '동아리 아이디', 'url')
+        parameter('boothName', '동아리 이름', 'url')
     ],
     'responses': {
         '200': {
             'description': '성공',
             'examples': {
                 '': {
-                    'boothId': '동아리 아이디',
+                    'boothName': '동아리 이름',
                     'problemId': '문제 아이디',
                     'question': '문제 내용',
                     'problemType': '''(int) 0 주관식
