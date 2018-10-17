@@ -4,6 +4,9 @@ from model.Booth import BoothModel
 
 
 class TeamModel(Document):
+    meta = {
+        'collection': 'team'
+    }
     teamId = IntField(
         primary_key=True,
         min_value=-1,
