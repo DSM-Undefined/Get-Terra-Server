@@ -35,6 +35,12 @@ SOLVE_GET = {
         },
         '403': {
             'description': '권한 없음'
+        },
+        '406': {
+            'description': '게임 시작 전'
+        },
+        '412': {
+            'description': '게임 종료'
         }
     }
 }
@@ -63,6 +69,12 @@ SOLVE_POST = {
         },
         '403': {
             'description': '권한 없음'
+        },
+        '406': {
+            'description': '게임 시작 전'
+        },
+        '412': {
+            'description': '게임 종료'
         }
     }
 }

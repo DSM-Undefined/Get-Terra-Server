@@ -56,5 +56,5 @@ class Config:
 
     JWT_SECRET_KEY = os.getenv('SECRET_KEY', 'nerd-bear')
     SECRET_KEY = os.getenv('SECRET_KEY', 'nerd-bear')
-    START_DATE = datetime(2018, 10, 20, 12)
-    END_DATE = datetime(2018, 10, 20, 13)
+    START_TIME = datetime(2018, 10, 20, 12)
+    END_TIME = datetime(2018, 10, 20, 13)

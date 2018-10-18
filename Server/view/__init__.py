@@ -1,8 +1,9 @@
+from datetime import datetime
 import os
 import threading
 import time
 
-from flask import request, Flask
+from flask import request, Flask, current_app, abort
 from flask_restful import Api
 
 
@@ -22,8 +23,16 @@ class Router:
 
         return 'hello'
 
+    def time_check(self):
+        if 'solve' in request.path:
+            if datetime.now() < current_app.config['START_TIME']:
+                abort(406)
+            if current_app.config['END_TIME'] < datetime.now():
+                abort(412)
+
     def register(self):
         self.app.add_url_rule('/hook', view_func=self.webhook_event_handler, methods=['POST'])
+        self.app.before_request(self.time_check)
 
         from view.account.auth import Auth
         from view.account.signup import Signup
