@@ -13,7 +13,7 @@ def create_app():
 
     app.config.from_object(Config)
     Router(app).register()
-    jwt = JWTManager(app)
+    JWTManager(app)
 
     connect('get-terra')
 
