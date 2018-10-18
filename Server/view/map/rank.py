@@ -12,4 +12,4 @@ class Rank(BaseResource):
     def get(self):
         map_ = {'map': [[team.teamId, len(team.ownBooth)] for team in TeamModel.objects()]}
 
-        return jsonify(map_), 200
+        return jsonify(map_)

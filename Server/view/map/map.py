@@ -18,7 +18,7 @@ class WebMap(BaseResource):
             'map': [[booth.boothName, booth.ownTeam.teamId] for booth in BoothModel.objects()]
         }
 
-        return jsonify(map_), 200
+        return jsonify(map_)
 
 
 class AndroidMap(BaseResource):
@@ -40,4 +40,4 @@ class AndroidMap(BaseResource):
             else:
                 map_['map'].append([booth.boothName, False])
 
-        return jsonify(map_), 200
+        return jsonify(map_)
