@@ -1,4 +1,4 @@
-from flask import request, Response, jsonify
+from flask import request, Response, jsonify, current_app, abort
 from flasgger import swag_from
 
 
@@ -12,6 +12,10 @@ class Booth(BaseResource):
 
     @swag_from(BOOTH_GET)
     def get(self):
+        payload = request.json
+        if payload['secretKey'] != current_app.config['SECRET_KEY']:
+            abort(403)
+
         booths = [[booth.boothName, booth.ownTeam.teamId]for booth in BoothModel.objects()]
         if not booths:
             return Response('', 204)
@@ -19,6 +23,10 @@ class Booth(BaseResource):
 
     @swag_from(BOOTH_POST)
     def post(self):
+        payload = request.json
+        if payload['secretKey'] != current_app.config['SECRET_KEY']:
+            abort(403)
+
         boothNameList = request.json['boothNameList']
         if not boothNameList:
             return Response('', 205)
@@ -33,6 +41,10 @@ class Booth(BaseResource):
 
     @swag_from(BOOTH_DELETE)
     def delete(self):
+        payload = request.json
+        if payload['secretKey'] != current_app.config['SECRET_KEY']:
+            abort(403)
+
         boothName = request.json['boothName']
 
         booth: BoothModel= BoothModel.objects(boothName=boothName).first()

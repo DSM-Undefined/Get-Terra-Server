@@ -14,6 +14,9 @@ SIGNUP_POST = {
         },
         '205': {
             'description': '중복 id 또는 email'
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
@@ -28,6 +31,9 @@ BOOTH_GET = {
         },
         '204': {
             'description': 'db에 부스가 없음'
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
@@ -44,6 +50,9 @@ BOOTH_POST = {
         },
         '205': {
             'description': '빈 리스트'
+        },
+        '403': {
+            'description': '권한 없음'
         }
     }
 }
