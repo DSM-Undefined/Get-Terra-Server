@@ -73,6 +73,9 @@ ANDROID_MAP_GET = {
                 }
             }
         },
+        '401': {
+            'description': 'request header 에 access token 없음 '
+        },
         '403': {
             'description': '권한 없음'
         }

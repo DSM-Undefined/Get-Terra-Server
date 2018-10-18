@@ -5,12 +5,10 @@ import time
 
 from flask import request, Flask, current_app, abort
 from flask_restful import Api
+from flask_jwt_extended.exceptions import NoAuthorizationError
 
 
-class Router:
-    def __init__(self, app: Flask):
-        self.app = app
-        self.api = Api(app)
+class Util:
 
     def reload_server(self):
         time.sleep(2)
@@ -30,9 +28,19 @@ class Router:
             if current_app.config['END_TIME'] < datetime.now():
                 abort(412)
 
+    def no_authorization_handler(self):
+        abort(401)
+
+
+class Router(Util):
+    def __init__(self, app: Flask):
+        self.app = app
+        self.api = Api(app)
+
     def register(self):
         self.app.add_url_rule('/hook', view_func=self.webhook_event_handler, methods=['POST'])
         self.app.before_request(self.time_check)
+        self.app.register_error_handler(NoAuthorizationError, self.no_authorization_handler)
 
         from view.account.auth import Auth
         from view.account.signup import Signup

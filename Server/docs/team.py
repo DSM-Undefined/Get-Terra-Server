@@ -27,6 +27,9 @@ TEAM_GET = {
                     ]
             }
         },
+        '401': {
+            'description': 'request header 에 access token 없음 '
+        },
         '403': {
             'description': '권한 없음'
         }
@@ -53,6 +56,9 @@ TEAM_POST = {
         },
         '205': {
             'description': '팀원 초과, 잘못된 팀 번호'
+        },
+        '401': {
+            'description': 'request header 에 access token 없음 '
         },
         '403': {
             'description': '권한 없음'

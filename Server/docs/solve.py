@@ -33,6 +33,9 @@ SOLVE_GET = {
         '205': {
             'description': '이미 팀에서 점령한 부스임'
         },
+        '401': {
+            'description': 'request header 에 access token 없음 '
+        },
         '403': {
             'description': '권한 없음'
         },
@@ -66,6 +69,9 @@ SOLVE_POST = {
         },
         '205': {
             'description': '오답'
+        },
+        '401': {
+            'description': 'request header 에 access token 없음 '
         },
         '403': {
             'description': '권한 없음'
