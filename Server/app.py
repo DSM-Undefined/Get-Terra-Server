@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flasgger import Swagger
 from flask_jwt_extended import JWTManager
 
@@ -14,6 +15,7 @@ def create_app():
     app.config.from_object(Config)
     Router(app).register()
     JWTManager(app)
+    CORS(app)
 
     connect('get-terra')
 
