@@ -10,6 +10,6 @@ class Rank(BaseResource):
 
     @swag_from(RANK_MAP_GET)
     def get(self):
-        map_ = [[team.teamId, len(team.ownBooth)] for team in TeamModel.objects()]
+        map_ = {'map': [[team.teamId, len(team.ownBooth)] for team in TeamModel.objects()]}
 
         return jsonify(map_), 200
