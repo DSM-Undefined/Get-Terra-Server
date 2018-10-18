@@ -19,7 +19,7 @@ class InitGame(BaseResource):
         if payload['secretKey'] != current_app.config['SECRET_KEY']:
             abort(403)
 
-        for i in range(-1, 5):
+        for i in range(-1, 4):
             team: TeamModel = TeamModel.objects(teamId=i).first()
             if team:
                 team.member = []
