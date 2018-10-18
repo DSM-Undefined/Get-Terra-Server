@@ -26,3 +26,6 @@ class Router:
 
         from view.booth import Booth
         self.api.add_resource(Booth, '/booth')
+
+        from view.init import InitGame
+        self.api.add_resource(InitGame, '/init')
