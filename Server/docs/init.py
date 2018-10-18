@@ -1,7 +1,7 @@
 from docs import parameter
 
 INIT_GAME_POST = {
-    'tags': ['init'],
+    'tags': ['Init'],
     'description': '게임 초기화',
     'parameters': [
         parameter('secretKey', 'SECRET_KEY'),
