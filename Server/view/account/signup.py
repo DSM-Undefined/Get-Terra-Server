@@ -3,7 +3,7 @@ from flask import request, Response
 
 from view.base_resource import BaseResource
 from docs.account import SIGNUP_POST
-from model.User import UserModel
+from model.User import UserBase, UserModel
 from model.Team import TeamModel
 
 
@@ -13,7 +13,7 @@ class Signup(BaseResource):
     def post(self):
         payload = request.json
 
-        if UserModel.objects(userId=payload['id']).first() or UserModel.objects(email=payload['email']).first():
+        if UserBase.objects(userId=payload['id']).first() or UserBase.objects(email=payload['email']).first():
             return Response('', 205)
 
         pw = self.encrypt_password(payload['password'])

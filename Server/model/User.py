@@ -1,13 +1,11 @@
 from mongoengine import *
 
 
-class UserModel(Document):
-    """
-    사용자 정보 관련 Collection
-    """
+class UserBase(Document):
 
     meta = {
-        'collection': 'user'
+        'abstract': True,
+        'allow_inheritance': True
     }
 
     userId = StringField(
@@ -18,6 +16,16 @@ class UserModel(Document):
         required=True
     )
 
+
+class UserModel(UserBase):
+    """
+    사용자 정보 관련 Collection
+    """
+
+    meta = {
+        'collection': 'user'
+    }
+
     password = StringField(
         required=True
     )
@@ -26,3 +34,9 @@ class UserModel(Document):
         document_type='TeamModel',
         required=True
     )
+
+
+class DeadUserModel(Document):
+    meta = {
+        'collection': 'dead_user'
+    }

@@ -6,6 +6,7 @@ from view.base_resource import BaseResource
 
 from model.Booth import BoothModel
 from model.Team import TeamModel
+from model.User import UserModel, DeadUserModel
 
 from docs.init import INIT_GAME_POST
 
@@ -36,3 +37,7 @@ class InitGame(BaseResource):
         payload = request.json
         current_app.config['START_TIME'] = datetime(**(payload['start']))
         current_app.config['END_TIME'] = datetime(**(payload['end']))
+
+        for user in UserModel.objects(team__ne=default_team, userId__ne='nerd'):
+            DeadUserModel(userId=user['userId'], email=user['email']).save()
+            user.delete()
