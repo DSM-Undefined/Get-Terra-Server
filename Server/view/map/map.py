@@ -31,7 +31,7 @@ class AndroidMap(BaseResource):
             return abort(403)
 
         default_team: TeamModel = TeamModel.objects(teamId=-1).first()
-        map_ = {'map': []}
+        map_ = {'map': [], 'myTeam': user.team.teamId}
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
                 map_['map'].append([booth.boothName, None])

@@ -80,7 +80,8 @@ ANDROID_MAP_GET = {
                         ['언디파인드', True],
                         ['GG', None],
                         ['스위트팹', None]
-                    ]
+                    ],
+                    'myTeam': 1
                 }
             }
         },
