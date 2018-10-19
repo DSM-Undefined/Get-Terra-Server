@@ -1,4 +1,5 @@
 from mongoengine import *
+from datetime import datetime
 
 
 class BoothModel(Document):
@@ -17,4 +18,8 @@ class BoothModel(Document):
     ownTeam = ReferenceField(
         document_type='TeamModel',
         required=True
+    )
+
+    nextCaptureTime = DateTimeField(
+        default=datetime(2001, 4, 20)
     )

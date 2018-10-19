@@ -42,6 +42,9 @@ SOLVE_GET = {
         '406': {
             'description': '게임 시작 전'
         },
+        '408': {
+            'description': '딜레이 시간'
+        },
         '412': {
             'description': '게임 종료'
         }
@@ -78,6 +81,9 @@ SOLVE_POST = {
         },
         '406': {
             'description': '게임 시작 전'
+        },
+        '408': {
+            'description': '딜레이 시간'
         },
         '412': {
             'description': '게임 종료'
