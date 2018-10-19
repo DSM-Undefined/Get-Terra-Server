@@ -23,6 +23,12 @@ WEB_MAP_GET = {
                     ]
                 }
             }
+        },
+        '406': {
+            'description': '게임 시작 전'
+        },
+        '412': {
+            'description': '게임 종료'
         }
     }
 }
@@ -46,6 +52,12 @@ RANK_MAP_GET = {
                     ]
                 }
             }
+        },
+        '406': {
+            'description': '게임 시작 전'
+        },
+        '412': {
+            'description': '게임 종료'
         }
     }
 }

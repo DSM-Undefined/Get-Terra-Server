@@ -22,7 +22,7 @@ class Util:
         return 'hello'
 
     def time_check(self):
-        if 'solve' in request.path:
+        if 'solve' in request.path or 'rank' in request.path or 'web' in request.path:
             if datetime.now() < current_app.config['START_TIME']:
                 abort(406)
             if current_app.config['END_TIME'] < datetime.now():
