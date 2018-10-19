@@ -3,9 +3,10 @@ import os
 import threading
 import time
 
-from flask import request, Flask, current_app, abort
+from flask import request, Flask, current_app, abort, jsonify
 from flask_restful import Api
 from flask_jwt_extended.exceptions import NoAuthorizationError
+from werkzeug.exceptions import HTTPException
 
 
 class Util:
@@ -28,8 +29,19 @@ class Util:
             if current_app.config['END_TIME'] < datetime.now():
                 abort(412)
 
-    def no_authorization_handler(self):
-        abort(401)
+    def exception_handler(self, e):
+        print(e)
+
+        if isinstance(e, HTTPException):
+            description = e.description
+            code = e.code
+        else:
+            description = ''
+            code = 500
+
+        return jsonify({
+            'msg': description
+        }), code
 
 
 class Router(Util):
@@ -40,7 +52,7 @@ class Router(Util):
     def register(self):
         self.app.add_url_rule('/hook', view_func=self.webhook_event_handler, methods=['POST'])
         self.app.before_request(self.time_check)
-        self.app.register_error_handler(NoAuthorizationError, self.no_authorization_handler)
+        self.app.register_error_handler(Exception, self.exception_handler)
 
         from view.account.auth import Auth
         from view.account.signup import Signup
