@@ -31,7 +31,7 @@ class Team(BaseResource):
             return Response('', 204)
 
         team: TeamModel = TeamModel.objects(teamId=int(request.args.get('team'))).first()
-        if (not team) or len(team.member) > 5:
+        if (not team) or len(UserModel.objects(team=team)) > 5:
             return Response('', 205)
 
         user.team = team
