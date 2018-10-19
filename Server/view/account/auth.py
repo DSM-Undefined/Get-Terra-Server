@@ -1,5 +1,5 @@
 from flasgger import swag_from
-from flask import request, jsonify, Response
+from flask import request, jsonify, abort
 from flask_jwt_extended import create_access_token
 from datetime import timedelta
 
@@ -19,4 +19,4 @@ class Auth(BaseResource):
         if user:
             return jsonify({"accessTocken": create_access_token(identity=user.userId, expires_delta=timedelta(days=1))})
 
-        return Response('', 401)
+        abort(401)

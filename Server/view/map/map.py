@@ -1,5 +1,5 @@
 from flasgger import swag_from
-from flask import jsonify, Response
+from flask import jsonify, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from view.base_resource import BaseResource
@@ -28,7 +28,7 @@ class AndroidMap(BaseResource):
     def get(self):
         user: UserModel = UserModel.objects(userId=get_jwt_identity()).first()
         if not user:
-            return Response('', 403)
+            return abort(403)
 
         default_team: TeamModel = TeamModel.objects(teamId=-1).first()
         map_ = {'map': []}

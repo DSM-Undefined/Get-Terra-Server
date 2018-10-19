@@ -23,11 +23,12 @@ class Solve(BaseResource):
         if not booth:
             return Response('', 204)
 
-        if booth in user.ownBooth:
+        if booth.ownTeam == user.team:
             return Response('', 205)
 
-        problem = choice(ProblemBase.objects())
-        response = {key: problem['key'] for key in problem}
+        problem: ProblemBase = choice(ProblemBase.objects())
+
+        response = problem.to_mongo()
         response['boothName'] = boothName
 
         return jsonify(response)
@@ -48,13 +49,7 @@ class Solve(BaseResource):
         if payload['answer'] != problem.answer:
             return Response('', 205)
 
-        booth.ownTeam.ownBooth.remove(booth)
-        booth.ownTeam.save()
-
         booth.ownTeam = user.team
         booth.save()
-
-        user.team.ownBooth.append(booth)
-        user.team.save()
 
         return Response('', 201)
