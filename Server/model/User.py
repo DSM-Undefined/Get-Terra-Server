@@ -4,7 +4,6 @@ from mongoengine import *
 class UserBase(Document):
 
     meta = {
-        'abstract': True,
         'allow_inheritance': True
     }
 
