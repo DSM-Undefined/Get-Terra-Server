@@ -25,7 +25,7 @@ class ProblemBase(Document):
         required=True
     )
 
-
+'''
 class OXModel(ProblemBase):
     """
     OX 문항 Collection
@@ -42,6 +42,7 @@ class SubModel(ProblemBase):
     meta = {
         'collection': 'write_problem'
     }
+'''
 
 
 class ChoiceModel(ProblemBase):

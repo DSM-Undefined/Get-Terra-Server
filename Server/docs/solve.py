@@ -90,3 +90,15 @@ SOLVE_POST = {
         }
     }
 }
+
+SOLVE_PUT = {
+    'tags': ['Solve'],
+    'description': '문제 등록',
+    'parameters': [
+        parameter('problemId', '문제 아이디 (배터리 없어서 급해서 일단 넣어 내일 고칠거)',type='int'),
+        parameter('sercretKey', '시크릿 키'),
+        parameter('content', '문제 내용'),
+        parameter('answer', '정답'),
+        parameter('choices', '4지선다 보기 (["1번", "2번", "3번", "4번"]')
+    ]
+}
