@@ -56,7 +56,7 @@ SOLVE_POST = {
     'description': '문제 정답 제출',
     'parameters': [
         jwt_header,
-        parameter('boothCode', '동아리 아이디', 'url'),
+        parameter('boothId', '동아리 아이디', 'url'),
         parameter('problemId', '문제 아이디'),
         parameter('answer', '''정답
         주관식: (str) 정답
