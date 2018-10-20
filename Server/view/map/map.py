@@ -38,7 +38,7 @@ class AndroidMap(BaseResource):
         default_team: TeamModel = TeamModel.objects(teamId=-1).first()
         end: datetime = current_app.config['END_TIME']
         end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
-        map_ = {'map': [], 'endTime': end}
+        map_ = {'map': [], 'endTime': end, 'myTeam': user.team.teamId}
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
                 map_['map'].append([booth.boothName, None])
