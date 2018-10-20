@@ -12,9 +12,6 @@ class Booth(BaseResource):
 
     @swag_from(BOOTH_GET)
     def get(self):
-        payload = request.json
-        if payload['secretKey'] != current_app.config['SECRET_KEY']:
-            abort(403)
 
         booths = [[booth.boothName, booth.ownTeam.teamId]for booth in BoothModel.objects()]
         if not booths:

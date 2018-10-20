@@ -20,7 +20,8 @@ WEB_MAP_GET = {
                         ['언디파인드', 2],
                         ['GG', 3],
                         ['스위트팹', -1]
-                    ]
+                    ],
+                    'endTime': {'year': 2018, 'month': 10, 'day': 20, 'hour': 12, 'minute': 0}
                 }
             }
         },
@@ -81,7 +82,8 @@ ANDROID_MAP_GET = {
                         ['GG', None],
                         ['스위트팹', None]
                     ],
-                    'myTeam': 1
+                    'myTeam': 1,
+                    'endTime': {'year': 2018, 'month': 10, 'day': 20, 'hour': 12, 'minute': 0}
                 }
             }
         },

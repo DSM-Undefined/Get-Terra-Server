@@ -1,6 +1,8 @@
 from flasgger import swag_from
-from flask import jsonify, abort
+from flask import jsonify, Response, abort, current_app
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
+from datetime import datetime
 
 from view.base_resource import BaseResource
 from docs.map import WEB_MAP_GET, ANDROID_MAP_GET
@@ -14,8 +16,11 @@ class WebMap(BaseResource):
 
     @swag_from(WEB_MAP_GET)
     def get(self):
+        end: datetime = current_app.config['END_TIME']
+        end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
         map_ = {
-            'map': [[booth.boothName, booth.ownTeam.teamId] for booth in BoothModel.objects()]
+            'map': [[booth.boothName, booth.ownTeam.teamId] for booth in BoothModel.objects()],
+            'endTime': end
         }
 
         return jsonify(map_)
@@ -31,7 +36,9 @@ class AndroidMap(BaseResource):
             return abort(403)
 
         default_team: TeamModel = TeamModel.objects(teamId=-1).first()
-        map_ = {'map': [], 'myTeam': user.team.teamId}
+        end: datetime = current_app.config['END_TIME']
+        end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
+        map_ = {'map': [], 'endTime': end}
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
                 map_['map'].append([booth.boothName, None])
