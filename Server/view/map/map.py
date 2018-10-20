@@ -41,7 +41,7 @@ class AndroidMap(BaseResource):
         map_ = {'map': [], 'endTime': end, 'myTeam': user.team.teamId}
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
-                map_['map'].append([booth.boothName, None])
+                map_['map'].append([booth.boothName, False])
             elif booth.ownTeam == user.team:
                 map_['map'].append([booth.boothName, True])
             else:
