@@ -42,7 +42,7 @@ class AndroidMap(BaseResource):
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
                 map_['map'].append([booth.boothName, None])
-            elif booth == user.team:
+            elif booth.ownTeam == user.team:
                 map_['map'].append([booth.boothName, True])
             else:
                 map_['map'].append([booth.boothName, False])
