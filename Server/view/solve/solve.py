@@ -65,7 +65,7 @@ class Solve(BaseResource):
         return Response('', 201)
 
     @swag_from(SOLVE_PUT)
-    def put(self):
+    def put(self, boothName):
         payload = request.json
         if payload['secretKey'] != os.getenv('SECRET_KEY'):
             abort(403)
