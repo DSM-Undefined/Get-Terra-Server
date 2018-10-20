@@ -70,5 +70,8 @@ class Solve(BaseResource):
         if payload['secretKey'] != os.getenv('SECRET_KEY'):
             abort(403)
         del payload['secretKey']
-        ChoiceModel(problemType=1, **payload).save()
+        payload = payload['data']
+        for a in payload:
+            del a['problemType']
+            ChoiceModel(problemType=1, **a).save()
         return Response('', 201)
