@@ -17,7 +17,7 @@ class Signup(BaseResource):
             return Response('', 205)
 
         pw = self.encrypt_password(payload['password'])
-        default_team = TeamModel.objects(teamId=-1).first()
+        default_team = TeamModel.objects(teamName='empty').first()
         UserModel(userId=payload['id'], email=payload['email'], password=pw, team=default_team).save()
 
         return Response('', 201)

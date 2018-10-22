@@ -1,4 +1,4 @@
-from flask import request, Response, jsonify, current_app, abort
+from flask import request, Response, current_app, abort
 from flasgger import swag_from
 
 
@@ -20,7 +20,7 @@ class Booth(BaseResource):
         if not boothNameList:
             return Response('', 205)
 
-        default_team = TeamModel.objects(teamId=-1).first()
+        default_team = TeamModel.objects(teamName='empty').first()
         booths = [booth.boothName for booth in BoothModel.objects()]
         for booth in boothNameList:
             if booth not in booths:
@@ -36,7 +36,7 @@ class Booth(BaseResource):
 
         boothName = request.json['boothName']
 
-        booth: BoothModel= BoothModel.objects(boothName=boothName).first()
+        booth: BoothModel = BoothModel.objects(boothName=boothName).first()
         if not booth:
             return Response('', 204)
 

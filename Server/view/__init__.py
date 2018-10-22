@@ -32,10 +32,10 @@ class Util:
                 abort(412)
 
     def init_team(self):
-        for i in range(-1, 4):
-            team: TeamModel = TeamModel.objects(teamId=i).first()
+        for i in ['empty', 'blue', 'green', 'yellow', 'violet']:
+            team: TeamModel = TeamModel.objects(teamName=i).first()
             if not team:
-                TeamModel(teamId=i).save()
+                TeamModel(teamName=i).save()
 
     def exception_handler(self, e):
         print(e)

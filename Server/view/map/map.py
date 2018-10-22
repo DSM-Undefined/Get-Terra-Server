@@ -19,7 +19,7 @@ class WebMap(BaseResource):
         end: datetime = current_app.config['END_TIME']
         end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
         map_ = {
-            'map': {booth.boothName: booth.ownTeam.teamId for booth in BoothModel.objects()},
+            'map': {booth.boothName: booth.ownTeam.teamName for booth in BoothModel.objects()},
             'endTime': end
         }
 
@@ -35,10 +35,10 @@ class AndroidMap(BaseResource):
         if not user:
             return abort(403)
 
-        default_team: TeamModel = TeamModel.objects(teamId=-1).first()
+        default_team: TeamModel = TeamModel.objects(teamName='empty').first()
         end: datetime = current_app.config['END_TIME']
         end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
-        map_ = {'map': {}, 'endTime': end, 'myTeam': user.team.teamId}
+        map_ = {'map': {}, 'endTime': end, 'myTeam': user.team.teamName}
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
                 map_['map'][booth.boothName] = None

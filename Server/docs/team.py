@@ -2,7 +2,7 @@ from . import parameter, jwt_header
 
 TEAM_GET = {
     'tags': ['Team'],
-    'description': '팀별 팀원 리스트\n 순서: blue, green, yellow, violet',
+    'description': '팀별 팀원 리스트',
     'parameters': [
         jwt_header
     ],
@@ -10,21 +10,21 @@ TEAM_GET = {
         '200': {
             'description': 'get 성공',
             'examples': {
-                '': [
-                        [
-                            'ㅁㅁ',
-                            'ㅇㅇ',
-                            'ㄷㄷ'
-                        ],
-                        [
-                            'aa',
-                            'dd'
-                        ],
-                        [],
-                        [
-                            '상미니'
-                        ]
+                '': {
+                    'blue': [
+                        'ㅁㅁ',
+                        'ㅇㅇ',
+                        'ㄷㄷ'
+                    ],
+                    'green': [
+                        'aa',
+                        'dd'
+                    ],
+                    'yellow': [],
+                    'violet': [
+                        '상미니'
                     ]
+                }
             }
         },
         '401': {
@@ -41,11 +41,7 @@ TEAM_POST = {
     'description': '팀 참가',
     'parameters': [
         jwt_header,
-        parameter('team', '''팀 종류
-        0: blue
-        1: green
-        2: yellow
-        3: violet''', 'query string')
+        parameter('team', '''팀 종류 empty, blue, green, yellow, violet''', 'query string')
     ],
     'responses': {
         '201': {

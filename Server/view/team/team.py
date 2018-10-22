@@ -17,7 +17,7 @@ class Team(BaseResource):
         if not user:
             abort(403)
 
-        result = [[user.userId for user in UserModel.objects(team=team)] for team in TeamModel.objects() if team.teamId != -1]
+        result = {team.teamNam: [user.userId for user in UserModel.objects(team=team)] for team in TeamModel.objects()}
         return jsonify(result)
 
     @swag_from(TEAM_POST)
@@ -27,10 +27,10 @@ class Team(BaseResource):
         if not user:
             abort(403)
 
-        if user.team.teamId != -1:
+        if user.team.teamName != 'empty':
             return Response('', 204)
 
-        team: TeamModel = TeamModel.objects(teamId=int(request.args.get('team'))).first()
+        team: TeamModel = TeamModel.objects(teamName=int(request.args.get('team'))).first()
         if (not team) or len(UserModel.objects(team=team)) > 5:
             return Response('', 205)
 

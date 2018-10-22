@@ -10,7 +10,7 @@ app = create_app()
 
 @app.route('/test')
 def a():
-    teams = TeamModel.objects(teamId__ne=-1)
+    teams = TeamModel.objects(teamName__ne='empty')
     for booth in BoothModel.objects():
         t = choice(teams)
         booth.ownTeam = t

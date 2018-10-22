@@ -11,7 +11,7 @@ class Rank(BaseResource):
 
     @swag_from(RANK_MAP_GET)
     def get(self):
-        teams = [[team.teamId, len(BoothModel.objects(ownTeam=team))] for team in TeamModel.objects() if team.teamId != -1]
+        teams = [[team.teamName, len(BoothModel.objects(ownTeam=team))] for team in TeamModel.objects() if team.teamName != 'empty']
         teams.sort(key=lambda a: a[1], reverse=True)
 
         map_ = {'map': {}}
