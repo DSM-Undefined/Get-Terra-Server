@@ -19,7 +19,7 @@ class WebMap(BaseResource):
         end: datetime = current_app.config['END_TIME']
         end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
         map_ = {
-            'map': [[booth.boothName, booth.ownTeam.teamId] for booth in BoothModel.objects()],
+            'map': {booth.boothName: booth.ownTeam.teamId for booth in BoothModel.objects()},
             'endTime': end
         }
 
@@ -38,13 +38,13 @@ class AndroidMap(BaseResource):
         default_team: TeamModel = TeamModel.objects(teamId=-1).first()
         end: datetime = current_app.config['END_TIME']
         end = {'year': end.year, 'month': end.month, 'day': end.day, 'hour': end.hour, 'minute': end.minute}
-        map_ = {'map': [], 'endTime': end, 'myTeam': user.team.teamId}
+        map_ = {'map': {}, 'endTime': end, 'myTeam': user.team.teamId}
         for booth in BoothModel.objects():
             if booth.ownTeam == default_team:
-                map_['map'].append([booth.boothName, False])
+                map_['map'][booth.boothName] = None
             elif booth.ownTeam == user.team:
-                map_['map'].append([booth.boothName, True])
+                map_['map'][booth.boothName] = True
             else:
-                map_['map'].append([booth.boothName, False])
+                map_['map'][booth.boothName] = False
 
         return jsonify(map_)

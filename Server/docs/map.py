@@ -1,4 +1,4 @@
-from . import jwt_header, parameter
+from . import jwt_header
 
 WEB_MAP_GET = {
     'tags': ['Map'],
@@ -14,13 +14,13 @@ WEB_MAP_GET = {
             3: violet""",
             'examples': {
                 '': {
-                    'map': [
-                        ['그램', 0],
-                        ['시나브로', 1],
-                        ['언디파인드', 2],
-                        ['GG', 3],
-                        ['스위트팹', -1]
-                    ],
+                    'map': {
+                        'GRAM': 0,
+                        '시나브로': 1,
+                        'Undefined': 2,
+                        'NoNamed': 3,
+                        'LUNA': -1
+                    },
                     'endTime': {'year': 2018, 'month': 10, 'day': 20, 'hour': 12, 'minute': 0}
                 }
             }
@@ -43,13 +43,25 @@ RANK_MAP_GET = {
             'description': 'get 성공 (랭킹 순 정렬)',
             'examples': {
                 '': {
-                    'map': [
-                        ['(팀 번호)', '(점령한 땅의 수)'],
-                        [3, 20],
-                        [1, 16],
-                        [2, 9],
-                        [0, 3]
-                    ]
+                    'map': {
+                        '1': {
+                            'team': 3,
+                            'booths': 20
+                        },
+                        '2': {
+                            'team': 1,
+                            'booths': 16
+                        },
+
+                        '3': {
+                            'team': 2,
+                            'booths': 9
+                        },
+                        '4': {
+                            'team': 0,
+                            'booths': 3
+                        }
+                    }
                 }
             }
         },
@@ -75,13 +87,13 @@ ANDROID_MAP_GET = {
             """,
             'examples': {
                 '': {
-                    'map': [
-                        ['그램', True],
-                        ['시나브로', False],
-                        ['언디파인드', True],
-                        ['GG', None],
-                        ['스위트팹', None]
-                    ],
+                    'map': {
+                        'GRAM': True,
+                        '시나브로': False,
+                        'Undefined': True,
+                        'NoNamed': None,
+                        'LUNA': None
+                    },
                     'myTeam': 1,
                     'endTime': {'year': 2018, 'month': 10, 'day': 20, 'hour': 12, 'minute': 0}
                 }
