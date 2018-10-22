@@ -22,11 +22,6 @@ class InitGame(BaseResource):
         if payload['secretKey'] != current_app.config['SECRET_KEY']:
             abort(403)
 
-        for i in range(-1, 4):
-            team: TeamModel = TeamModel.objects(teamId=i).first()
-            if not team:
-                TeamModel(teamId=i).save()
-
         default_team = TeamModel.objects(teamId=-1).first()
         for booth in BoothModel.objects():
             booth.ownTeam = default_team

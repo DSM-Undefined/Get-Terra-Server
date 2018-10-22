@@ -8,6 +8,8 @@ from flask_restful import Api
 from flask_jwt_extended.exceptions import NoAuthorizationError
 from werkzeug.exceptions import HTTPException
 
+from model.Team import TeamModel
+
 
 class Util:
 
@@ -28,6 +30,12 @@ class Util:
                 abort(406)
             if current_app.config['END_TIME'] < datetime.now():
                 abort(412)
+
+    def init_team(self):
+        for i in range(-1, 4):
+            team: TeamModel = TeamModel.objects(teamId=i).first()
+            if not team:
+                TeamModel(teamId=i).save()
 
     def exception_handler(self, e):
         print(e)
@@ -52,6 +60,7 @@ class Router(Util):
     def register(self):
         self.app.add_url_rule('/hook', view_func=self.webhook_event_handler, methods=['POST'])
         self.app.before_request(self.time_check)
+        self.app.before_first_request(self.init_team)
         self.app.register_error_handler(Exception, self.exception_handler)
 
         from view.account.auth import Auth
