@@ -1,27 +1,10 @@
 from . import parameter
 
-BOOTH_GET = {
-    'tags': ['Booth'],
-    'description': '부스 리스트',
-    'parameters': [],
-    'responses': {
-        '200': {
-            'description': 'get 성공'
-        },
-        '204': {
-            'description': 'db에 부스가 없음'
-        },
-        '403': {
-            'description': '권한 없음'
-        }
-    }
-}
-
-BOOTH_POST = {
+BOOTH_PUT = {
     'tags': ['Booth'],
     'description': '부스 등록',
     'parameters': [
-        parameter('boothNameList', '부스 이름', type='string list')
+        parameter('boothNameList', '부스 이름 리스트 ["ㅁㅁ", "ㅇㅇ"]', type='string list')
     ],
     'responses': {
         '201': {

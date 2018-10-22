@@ -10,16 +10,8 @@ from view.base_resource import BaseResource
 
 class Booth(BaseResource):
 
-    @swag_from(BOOTH_GET)
-    def get(self):
-
-        booths = [[booth.boothName, booth.ownTeam.teamId]for booth in BoothModel.objects()]
-        if not booths:
-            return Response('', 204)
-        return jsonify(booths)
-
-    @swag_from(BOOTH_POST)
-    def post(self):
+    @swag_from(BOOTH_PUT)
+    def put(self):
         payload = request.json
         if payload['secretKey'] != current_app.config['SECRET_KEY']:
             abort(403)
