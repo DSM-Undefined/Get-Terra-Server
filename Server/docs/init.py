@@ -5,8 +5,8 @@ INIT_GAME_POST = {
     'description': '게임 초기화',
     'parameters': [
         parameter('secretKey', 'SECRET_KEY'),
-        parameter('start', '게임 시작 시간 {"year": 2018, "month": 10, "day": 20, "hour": 12}', type='dict'),
-        parameter('end', '게임 끝시간 {"year": 2018, "month": 10, "day": 20, "hour": 12}', type='dict')
+        parameter('start', '게임 시작 시간 {"year": 2018, "month": 10, "day": 20, "hour": 12}', type='dict (map)'),
+        parameter('end', '게임 끝시간 {"year": 2018, "month": 10, "day": 20, "hour": 12}', type='dict (map)')
     ],
     'responses': {
         '201': {'description': '설정 성공'},

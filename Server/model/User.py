@@ -35,7 +35,7 @@ class UserModel(UserBase):
     )
 
 
-class DeadUserModel(Document):
+class DeadUserModel(UserBase):
     meta = {
         'collection': 'dead_user'
     }

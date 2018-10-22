@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from json import loads
 
 
 class Config:
@@ -52,9 +53,18 @@ class Config:
     }
 
     JSON_AS_ASCII = False
-    # UTF-8로 인코딩된 JSON을 반환하기 위해(아마도) 설정
 
     JWT_SECRET_KEY = os.getenv('SECRET_KEY', 'nerd-bear')
     SECRET_KEY = os.getenv('SECRET_KEY', 'nerd-bear')
-    START_TIME = datetime(2018, 10, 20, 12)
-    END_TIME = datetime(2018, 10, 20, 13)
+
+    START_TIME = datetime(
+        **loads(
+            os.getenv('START_TIME', '{"year": 2018, "month": 10, "day": 20, "hour": 12}')
+        )
+    )
+
+    END_TIME = datetime(
+        **loads(
+            os.getenv('END_TIME', '{"year": 2018, "month": 10, "day": 20, "hour": 13}')
+        )
+    )

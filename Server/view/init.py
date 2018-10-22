@@ -1,6 +1,8 @@
 from datetime import datetime
 from flask import current_app, request, abort
 from flasgger import swag_from
+from json import dumps
+import os
 
 from view.base_resource import BaseResource
 
@@ -22,11 +24,7 @@ class InitGame(BaseResource):
 
         for i in range(-1, 4):
             team: TeamModel = TeamModel.objects(teamId=i).first()
-            if team:
-                team.member = []
-                team.ownBooth = []
-                team.save()
-            else:
+            if not team:
                 TeamModel(teamId=i).save()
 
         default_team = TeamModel.objects(teamId=-1).first()
@@ -35,7 +33,15 @@ class InitGame(BaseResource):
             booth.save()
 
         payload = request.json
-        current_app.config['START_TIME'] = datetime(**(payload['start']))
-        current_app.config['END_TIME'] = datetime(**(payload['end']))
 
-        UserModel.objects(team__ne=default_team, userId__ne='nerd').delete()
+        start = payload['start']
+        end = payload['end']
+
+        current_app.config['START_TIME'] = datetime(**start)
+        current_app.config['END_TIME'] = datetime(**end)
+
+        os.putenv('START_TIME', dumps(start))
+        os.putenv('END_TIME', dumps(end))
+
+        for user in UserModel.objects(team__ne=default_team):
+            DeadUserModel(userId=user.userId, email=user.email)
