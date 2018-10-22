@@ -1,13 +1,12 @@
 from mongoengine import *
 
 
-class ProblemBase(Document):
+class ProblemModel(Document):
     """
     출제되는 문제에 관한 상위 Collection
     """
     meta = {
-        'abstract': True,
-        'allow_inheritance': True
+        'collection': 'problem'
     }
 
     problemId = IntField(
@@ -24,34 +23,6 @@ class ProblemBase(Document):
     answer = StringField(
         required=True
     )
-
-'''
-class OXModel(ProblemBase):
-    """
-    OX 문항 Collection
-    """
-    meta = {
-        'collection': 'ox_problem'
-    }
-
-
-class SubModel(ProblemBase):
-    """
-    주관식 문항 Collection
-    """
-    meta = {
-        'collection': 'write_problem'
-    }
-'''
-
-
-class ChoiceModel(ProblemBase):
-    """
-    4지선다 Collection
-    """
-    meta = {
-        'collection': 'choice_problem'
-    }
 
     choices = ListField(
         StringField(

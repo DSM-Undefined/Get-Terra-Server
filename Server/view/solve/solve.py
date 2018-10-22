@@ -9,7 +9,7 @@ import os
 from view.base_resource import BaseResource
 from docs.solve import SOLVE_GET, SOLVE_POST, SOLVE_PUT
 from model.User import UserModel
-from model.Problem import ChoiceModel
+from model.Problem import ProblemModel
 from model.Booth import BoothModel
 
 
@@ -32,10 +32,12 @@ class Solve(BaseResource):
         if booth.nextCaptureTime > datetime.now():
             abort(408)
 
-        problem: ChoiceModel = choice(ChoiceModel.objects())
+        problem: ProblemModel = choice(ProblemModel.objects())
 
-        response = problem.to_mongo()
-        response['boothName'] = boothName
+        response = {'boothName': boothName,
+                    'problemId': problem.problemId,
+                    'content': problem.content,
+                    'choices': problem.choices}
 
         return jsonify(response)
 
@@ -47,7 +49,7 @@ class Solve(BaseResource):
             return abort(403)
         payload: dict = request.json
 
-        problem: ChoiceModel = ChoiceModel.objects(problemId=payload['problemId']).first()
+        problem: ProblemModel = ProblemModel.objects(problemId=payload['problemId']).first()
         booth: BoothModel = BoothModel.objects(boothName=boothName).first()
         if not all((problem, booth)):
             return Response('', 204)
@@ -69,9 +71,7 @@ class Solve(BaseResource):
         payload = request.json
         if payload['secretKey'] != os.getenv('SECRET_KEY'):
             abort(403)
-        del payload['secretKey']
-        payload = payload['data']
-        for a in payload:
-            del a['problemType']
-            ChoiceModel(problemType=1, **a).save()
+
+        for a in payload['problems']:
+            ProblemModel(**a).save()
         return Response('', 201)

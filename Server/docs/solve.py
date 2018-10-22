@@ -5,20 +5,17 @@ SOLVE_GET = {
     'description': '문제 get',
     'parameters': [
         jwt_header,
-        parameter('boothName', '동아리 이름', 'url')
+        parameter('boothName', '부스 이름', 'url')
     ],
     'responses': {
         '200': {
             'description': '성공',
             'examples': {
                 '': {
-                    'boothName': '동아리 이름',
+                    'boothName': '부스 이름',
                     'problemId': '문제 아이디',
-                    'question': '문제 내용',
-                    'problemType': '''(int) 0 주관식
-                    1 4지선다
-                    2 OX''',
-                    'choices (4지선다만)': [
+                    'content': '문제 내용',
+                    'choices': [
                         '1번 보기',
                         '2번 보기',
                         '3번 보기',
@@ -31,7 +28,7 @@ SOLVE_GET = {
             'description': '해당 부스아이디에 해당하는 부스 없음'
         },
         '205': {
-            'description': '이미 팀에서 점령한 부스임'
+            'description': '이미 해당팀에서 점령한 부스임'
         },
         '401': {
             'description': 'request header 에 access token 없음 '
@@ -56,12 +53,9 @@ SOLVE_POST = {
     'description': '문제 정답 제출',
     'parameters': [
         jwt_header,
-        parameter('boothId', '동아리 아이디', 'url'),
+        parameter('boothName', '부스 이름', 'url'),
         parameter('problemId', '문제 아이디'),
-        parameter('answer', '''정답
-        주관식: (str) 정답
-        OX: (str) O / X
-        4지 선다: (int) 정답 번호''')
+        parameter('answer', '정답 (보기 내용)')
     ],
     'responses': {
         '201': {
@@ -95,10 +89,11 @@ SOLVE_PUT = {
     'tags': ['Solve'],
     'description': '문제 등록',
     'parameters': [
-        parameter('problemId', '문제 아이디 (배터리 없어서 급해서 일단 넣어 내일 고칠거)',type='int'),
         parameter('sercretKey', '시크릿 키'),
-        parameter('content', '문제 내용'),
-        parameter('answer', '정답'),
-        parameter('choices', '4지선다 보기 (["1번", "2번", "3번", "4번"]')
-    ]
+        parameter('problems', '문제 리스트 ([{"problemId": 문제 번호(int), "content": "문제 내용(str)", "answer": "정답(str)", "choices": 4지선다 보기 (["1번", "2번", "3번", "4번"])}]))', type='dict (map)')
+    ],
+    'response': {
+        '201': {'description': '정답'},
+        '403': {'description': '잘못된 secret key'}
+    }
 }
