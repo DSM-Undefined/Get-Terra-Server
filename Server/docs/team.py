@@ -11,17 +11,18 @@ TEAM_GET = {
             'description': 'get 성공',
             'examples': {
                 '': {
-                    'blue': [
+                    'teamCount': 4,
+                    '1': [
                         'ㅁㅁ',
                         'ㅇㅇ',
                         'ㄷㄷ'
                     ],
-                    'green': [
+                    '2': [
                         'aa',
                         'dd'
                     ],
-                    'yellow': [],
-                    'violet': [
+                    '3': [],
+                    '4': [
                         '상미니'
                     ]
                 }
@@ -41,7 +42,7 @@ TEAM_POST = {
     'description': '팀 참가',
     'parameters': [
         jwt_header,
-        parameter('team', '''팀 종류 empty, blue, green, yellow, violet''', 'query string')
+        parameter('team', '팀 넘버', 'query string', 'int')
     ],
     'responses': {
         '201': {
