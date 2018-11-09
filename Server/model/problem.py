@@ -1,5 +1,7 @@
 from mongoengine import *
 
+from model.game import GameModel
+
 
 class ProblemModel(Document):
     """
@@ -8,6 +10,12 @@ class ProblemModel(Document):
     meta = {
         'collection': 'problem'
     }
+
+    game = ReferenceField(
+        document_type=GameModel,
+        required=True,
+        reverse_delete_rule=CASCADE
+    )
 
     problemId = IntField(
         primary_key=True

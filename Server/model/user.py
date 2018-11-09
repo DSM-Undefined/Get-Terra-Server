@@ -1,12 +1,22 @@
 from mongoengine import *
 
+from model.game import GameModel
 
-class UserBase(Document):
+
+class UserModel(Document):
+    """
+    사용자 정보 관련 Collection
+    """
 
     meta = {
-        'abstract': True,
-        'allow_inheritance': True
+        'collection': 'user'
     }
+
+    game = ReferenceField(
+        document_type=GameModel,
+        required=True,
+        reverse_delete_rule=CASCADE
+    )
 
     userId = StringField(
         primary_key=True
@@ -16,16 +26,6 @@ class UserBase(Document):
         required=True
     )
 
-
-class UserModel(UserBase):
-    """
-    사용자 정보 관련 Collection
-    """
-
-    meta = {
-        'collection': 'user'
-    }
-
     password = StringField(
         required=True
     )
@@ -34,9 +34,3 @@ class UserModel(UserBase):
         document_type='TeamModel',
         required=True
     )
-
-
-class DeadUserModel(UserBase):
-    meta = {
-        'collection': 'dead_user'
-    }
