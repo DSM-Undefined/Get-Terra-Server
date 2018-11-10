@@ -36,7 +36,6 @@ class Router(Util):
     def register(self):
         self.app.add_url_rule('/hook', view_func=self.webhook_event_handler, methods=['POST'])
         self.app.before_request(self.time_check)
-        self.app.before_first_request(self.init_team)
 
         from view.auth import AuthView
         self.api.add_resource(AuthView, '/auth/<gameKey>')
