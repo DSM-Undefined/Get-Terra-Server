@@ -1,14 +1,14 @@
+from flask_restful import Resource
 from flasgger import swag_from
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import abort, jsonify, Response, request
 
-from view.base_resource import BaseResource
 from docs.team import TEAM_GET, TEAM_POST
 from model.user import UserModel
 from model.team import TeamModel
 
 
-class Team(BaseResource):
+class TeamView(Resource):
 
     @swag_from(TEAM_GET)
     @jwt_required

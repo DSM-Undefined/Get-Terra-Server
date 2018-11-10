@@ -1,19 +1,18 @@
+from flask_restful import Resource
 from flasgger import swag_from
 from flask import Response, jsonify, abort, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from datetime import datetime, timedelta
 from random import choice
-import os
 
-from view.base_resource import BaseResource
-from docs.solve import SOLVE_GET, SOLVE_POST, SOLVE_PUT
+from docs.solve import SOLVE_GET, SOLVE_POST
 from model.user import UserModel
 from model.problem import ProblemModel
 from model.booth import BoothModel
 
 
-class Solve(BaseResource):
+class SolveView(Resource):
 
     @swag_from(SOLVE_GET)
     @jwt_required
@@ -64,14 +63,4 @@ class Solve(BaseResource):
         booth.nextCaptureTime = datetime.now() + timedelta(minutes=1)
         booth.save()
 
-        return Response('', 201)
-
-    @swag_from(SOLVE_PUT)
-    def put(self, boothName):
-        payload = request.json
-        if payload['secretKey'] != os.getenv('SECRET_KEY'):
-            abort(403)
-
-        for a in payload['problems']:
-            ProblemModel(**a).save()
         return Response('', 201)

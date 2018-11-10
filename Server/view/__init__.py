@@ -5,7 +5,6 @@ import time
 
 from flask import request, Flask, current_app, abort, jsonify
 from flask_restful import Api
-from flask_jwt_extended.exceptions import NoAuthorizationError
 from werkzeug.exceptions import HTTPException
 
 from model.team import TeamModel
@@ -63,21 +62,21 @@ class Router(Util):
         self.app.before_first_request(self.init_team)
         self.app.register_error_handler(Exception, self.exception_handler)
 
-        from view.account.auth import Auth
+        from view.auth import Auth
         from view.account.signup import Signup
         self.api.add_resource(Auth, '/auth')
         self.api.add_resource(Signup, '/signup')
 
-        from view.map.map import AndroidMap, WebMap
+        from view.map import AndroidMap, WebMap
         from view.map.rank import Rank
         self.api.add_resource(AndroidMap, '/map/android')
         self.api.add_resource(WebMap, '/map/web')
         self.api.add_resource(Rank, '/rank')
 
-        from view.solve.solve import Solve
+        from view.solve import Solve
         self.api.add_resource(Solve, '/solve/<boothName>')
 
-        from view.team.team import Team
+        from view.team import Team
         self.api.add_resource(Team, '/team')
 
         from view.booth import Booth

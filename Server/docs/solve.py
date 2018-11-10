@@ -84,16 +84,3 @@ SOLVE_POST = {
         }
     }
 }
-
-SOLVE_PUT = {
-    'tags': ['Solve'],
-    'description': '문제 등록',
-    'parameters': [
-        parameter('sercretKey', '시크릿 키'),
-        parameter('problems', '문제 리스트 ([{"problemId": 문제 번호(int), "content": "문제 내용(str)", "answer": "정답(str)", "choices": 4지선다 보기 (["1번", "2번", "3번", "4번"])}]))', type='dict (map)')
-    ],
-    'response': {
-        '201': {'description': '정답'},
-        '403': {'description': '잘못된 secret key'}
-    }
-}
