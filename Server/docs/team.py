@@ -12,19 +12,29 @@ TEAM_GET = {
             'examples': {
                 '': {
                     'teamCount': 4,
-                    '1': [
-                        'ㅁㅁ',
-                        'ㅇㅇ',
-                        'ㄷㄷ'
-                    ],
-                    '2': [
-                        'aa',
-                        'dd'
-                    ],
-                    '3': [],
-                    '4': [
-                        '상미니'
-                    ]
+                    '1': {
+                        'teamColor': 'aaaaaa',
+                        'member': [
+                            'ㅁㅁ',
+                            'ㅇㅇ',
+                            'ㄷㄷ'
+                        ],
+                    },
+                    '2': {
+                        'teamColor': 'bbbbbb',
+                        'member': [
+                            'aa',
+                            'dd'
+                        ]
+                    },
+                    '3': {
+                        'teamColor': '5a4b4d',
+                        'member': []
+                    },
+                    '4': {
+                        'teamColor': '73847d',
+                        'member': ['상민이']
+                    }
                 }
             }
         },

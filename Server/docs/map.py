@@ -20,7 +20,8 @@ MAP_GET = {
                         'NoNamed': None,
                         'LUNA': None
                     },
-                    'myTeam': 1
+                    'myTeam': 1,
+                    'myTeamColor': '58c9b9'
                 }
             }
         },
