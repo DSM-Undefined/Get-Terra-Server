@@ -40,14 +40,6 @@ class Config:
             {
                 'name': 'Team',
                 'description': '팀 관련 API'
-            },
-            {
-                'name': 'Booth',
-                'description': '부스 관련 api (서버 외엔 터치 x)'
-            },
-            {
-                'name': 'Init',
-                'description': '게입 초기화 api (서버 외엔 터치 X)'
             }
         ]
     }
