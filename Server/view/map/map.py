@@ -7,9 +7,9 @@ from datetime import datetime
 from view.base_resource import BaseResource
 from docs.map import WEB_MAP_GET, ANDROID_MAP_GET
 
-from model.Booth import BoothModel
-from model.User import UserModel
-from model.Team import TeamModel
+from model.booth import BoothModel
+from model.user import UserModel
+from model.team import TeamModel
 
 
 class WebMap(BaseResource):

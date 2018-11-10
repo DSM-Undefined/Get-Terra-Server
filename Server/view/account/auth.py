@@ -6,7 +6,7 @@ from datetime import timedelta
 from werkzeug.security import check_password_hash
 
 from view.base_resource import BaseResource
-from model.User import UserModel
+from model.user import UserModel
 from docs.account import AUTH_POST
 
 

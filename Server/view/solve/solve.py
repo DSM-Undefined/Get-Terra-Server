@@ -8,9 +8,9 @@ import os
 
 from view.base_resource import BaseResource
 from docs.solve import SOLVE_GET, SOLVE_POST, SOLVE_PUT
-from model.User import UserModel
-from model.Problem import ProblemModel
-from model.Booth import BoothModel
+from model.user import UserModel
+from model.problem import ProblemModel
+from model.booth import BoothModel
 
 
 class Solve(BaseResource):

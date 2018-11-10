@@ -3,8 +3,8 @@ from flask import jsonify
 
 from view.base_resource import BaseResource
 from docs.map import RANK_MAP_GET
-from model.Team import TeamModel
-from model.Booth import BoothModel
+from model.team import TeamModel
+from model.booth import BoothModel
 
 
 class Rank(BaseResource):

@@ -3,8 +3,8 @@ from flask import request, Response
 
 from view.base_resource import BaseResource
 from docs.account import SIGNUP_POST
-from model.User import UserBase, UserModel
-from model.Team import TeamModel
+from model.user import UserBase, UserModel
+from model.team import TeamModel
 
 
 class Signup(BaseResource):

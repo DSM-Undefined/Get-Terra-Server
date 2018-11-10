@@ -4,8 +4,8 @@ from flask import abort, jsonify, Response, request
 
 from view.base_resource import BaseResource
 from docs.team import TEAM_GET, TEAM_POST
-from model.User import UserModel
-from model.Team import TeamModel
+from model.user import UserModel
+from model.team import TeamModel
 
 
 class Team(BaseResource):

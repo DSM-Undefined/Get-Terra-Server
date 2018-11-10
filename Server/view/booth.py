@@ -3,8 +3,8 @@ from flasgger import swag_from
 
 
 from docs.booth import *
-from model.Booth import BoothModel
-from model.Team import TeamModel
+from model.booth import BoothModel
+from model.team import TeamModel
 from view.base_resource import BaseResource
 
 

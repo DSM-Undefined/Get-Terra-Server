@@ -8,7 +8,7 @@ from flask_restful import Api
 from flask_jwt_extended.exceptions import NoAuthorizationError
 from werkzeug.exceptions import HTTPException
 
-from model.Team import TeamModel
+from model.team import TeamModel
 
 
 class Util:

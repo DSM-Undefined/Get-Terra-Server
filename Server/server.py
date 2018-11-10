@@ -1,7 +1,7 @@
 from app import create_app
 
-from model.Booth import BoothModel
-from model.Team import TeamModel
+from model.booth import BoothModel
+from model.team import TeamModel
 from random import choice
 
 

@@ -6,9 +6,9 @@ import os
 
 from view.base_resource import BaseResource
 
-from model.Booth import BoothModel
-from model.Team import TeamModel
-from model.User import UserModel, DeadUserModel
+from model.booth import BoothModel
+from model.team import TeamModel
+from model.user import UserModel, DeadUserModel
 
 from docs.init import INIT_GAME_POST
 
