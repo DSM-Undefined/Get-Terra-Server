@@ -21,7 +21,7 @@ MAP_GET = {
                         'LUNA': None
                     },
                     'myTeam': 1,
-                    'myTeamColor': '58c9b9'
+                    'myTeamColor': '#58c9b9'
                 }
             }
         },

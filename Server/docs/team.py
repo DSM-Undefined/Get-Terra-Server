@@ -13,7 +13,7 @@ TEAM_GET = {
                 '': {
                     'teamCount': 4,
                     '1': {
-                        'teamColor': 'aaaaaa',
+                        'teamColor': '#aaaaaa',
                         'member': [
                             'ㅁㅁ',
                             'ㅇㅇ',
@@ -21,18 +21,18 @@ TEAM_GET = {
                         ],
                     },
                     '2': {
-                        'teamColor': 'bbbbbb',
+                        'teamColor': '#bbbbbb',
                         'member': [
                             'aa',
                             'dd'
                         ]
                     },
                     '3': {
-                        'teamColor': '5a4b4d',
+                        'teamColor': '#5a4b4d',
                         'member': []
                     },
                     '4': {
-                        'teamColor': '73847d',
+                        'teamColor': '#73847d',
                         'member': ['상민이']
                     }
                 }
