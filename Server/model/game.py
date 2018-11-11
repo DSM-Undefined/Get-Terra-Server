@@ -6,6 +6,10 @@ class GameModel(Document):
         'collection': 'game'
     }
 
+    gameKey = IntField(
+        primary_key=True
+    )
+
     start_time = DateTimeField(
         required=True
     )
@@ -16,6 +20,6 @@ class GameModel(Document):
 
     teamCount = IntField(
         required=True,
-        min_value=1,
+        min_value=0,
         max_value=100
     )

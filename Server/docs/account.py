@@ -4,7 +4,7 @@ AUTH_POST = {
     'tags': ['Account'],
     'description': '로그인',
     'parameters': [
-        parameter('gameKey', '게임 인증키', in_='uri'),
+        parameter('gameKey', '게임 인증키', 'uri', 'int'),
         parameter('id', '아이디'),
         parameter('password', '비밀번호')
     ],
@@ -33,7 +33,7 @@ CHECK_GAME_KEY_GET = {
     'tags': ['Account'],
     'description': '게임키 유효성 확인',
     'parameters': [
-        parameter('gameKey', '게임 인증키', in_='uri')
+        parameter('gameKey', '게임 인증키', 'uri', 'int')
     ],
     'responses': {
         '200': {

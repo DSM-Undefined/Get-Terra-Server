@@ -1,12 +1,3 @@
-jwt_header = {
-    'name': 'Authorization',
-    'description': 'JWT token',
-    'in': 'header',
-    'type': 'str',
-    'required': True
-}
-
-
 def parameter(name, description, in_='json', type='str', required=True):
     return {
         'name': name,
@@ -15,3 +6,7 @@ def parameter(name, description, in_='json', type='str', required=True):
         'type': type,
         'required': required
     }
+
+
+jwt_header = ('Authorization', 'JWT Token', 'header')
+gameKey = parameter('gameKey', '게임 인증키', 'uri', 'int')
