@@ -15,7 +15,7 @@ class TeamModel(Document):
     )
 
     teamId = IntField(
-        primary_key=True
+        required=True
     )
 
     teamColor = StringField(
