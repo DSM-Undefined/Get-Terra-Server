@@ -1,9 +1,7 @@
 from flask_restful import Resource
 from flasgger import swag_from
-from flask import jsonify, Response, abort, current_app
-from flask_jwt_extended import jwt_required, get_jwt_identity
-
-from datetime import datetime
+from flask import jsonify, abort
+from flask_jwt_extended import jwt_required
 
 from docs.map import MAP_GET
 from model.booth import BoothModel
@@ -24,10 +22,10 @@ class MapView(Resource):
         map_ = {'map': {}, 'myTeam': g.user.team.teamId, 'myTeamColor': g.user.team.teamColor}
         for booth in BoothModel.objects(game=g.game):
             if booth.ownTeam == default_team:
-                map_['map'][booth.boothName] = None
+                map_['map'][booth.boothName] = -1
             elif booth.ownTeam == g.user.team:
-                map_['map'][booth.boothName] = True
+                map_['map'][booth.boothName] = 1
             else:
-                map_['map'][booth.boothName] = False
+                map_['map'][booth.boothName] = 0
 
         return jsonify(map_)

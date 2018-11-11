@@ -7,20 +7,20 @@ MAP_GET = {
     'responses': {
         '200': {
             'description': """get 성공
-            True: 우리팀이 점령함
-            False: 다른팀이 점령함
-            Null: 아직 점령이 안됨
+            1: 우리팀이 점령함
+            0: 다른팀이 점령함
+            -1: 아직 점령이 안됨
             """,
             'examples': {
                 '': {
                     'map': {
-                        'GRAM': True,
-                        '시나브로': False,
-                        'Undefined': True,
-                        'NoNamed': None,
-                        'LUNA': None
+                        'GRAM': 1,
+                        '시나브로': 0,
+                        'Undefined': 1,
+                        'NoNamed': -1,
+                        'LUNA': -1
                     },
-                    'myTeam': 1,
+                    'myTeam': 3,
                     'myTeamColor': '#58c9b9'
                 }
             }
