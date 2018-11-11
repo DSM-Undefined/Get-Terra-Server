@@ -9,3 +9,10 @@ def check_gameKey(fn):
             abort(204)
             return fn(gameKey)
     return wrapper
+
+
+def add_claims(user_id):
+    return {
+        'user_id': user_id,
+        'game_key': GameModel.objects(user_id).first()['gameKey']
+    }

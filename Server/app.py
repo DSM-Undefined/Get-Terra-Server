@@ -7,6 +7,7 @@ from mongoengine import connect
 
 from config import Config
 from view import Router
+from util import add_claims
 
 
 def create_app():
@@ -14,8 +15,10 @@ def create_app():
 
     app.config.from_object(Config)
     Router(app).register()
-    JWTManager(app)
     CORS(app)
+
+    jwt = JWTManager(app)
+    jwt.user_claims_loader(add_claims)
 
     connect('get-terra')
 
