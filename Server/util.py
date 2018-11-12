@@ -1,3 +1,5 @@
+from functools import wraps
+
 from flask import abort, g
 from flask_jwt_extended import get_jwt_claims
 
@@ -6,6 +8,7 @@ from model.game import GameModel
 
 
 def check_gameKey(fn):
+    @wraps(fn)
     def wrapper(gameKey):
         if not GameModel.objects(gameKey=gameKey).first():
             abort(204)
@@ -21,6 +24,7 @@ def add_claims(user_id):
 
 
 def set_g_object(fn):
+    @wraps(fn)
     def wrapper(*arg, **kwargs):
         jwt = get_jwt_claims()
         g.user = UserModel.objects(userId=jwt['user_id']).first()
