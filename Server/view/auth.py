@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from docs.account import AUTH_POST, CHECK_GAME_KEY_GET
 from model.user import UserModel
 from model.game import GameModel
+from model.team import TeamModel
 
 
 class AuthView(Resource):
@@ -31,5 +32,6 @@ class AuthView(Resource):
             else:
                 return Response('', 205)
 
-        UserModel(payload['id'], generate_password_hash(payload['password']), gameKey).save()
+        default_team = TeamModel.objects(game=game, teamId=0).first()
+        UserModel(game, payload['id'], generate_password_hash(payload['password']), default_team).save()
         return jsonify({'accessToken': create_access_token(user.id)})

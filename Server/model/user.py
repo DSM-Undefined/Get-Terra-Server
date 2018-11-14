@@ -22,10 +22,6 @@ class UserModel(Document):
         primary_key=True
     )
 
-    email = StringField(
-        required=True
-    )
-
     password = StringField(
         required=True
     )
