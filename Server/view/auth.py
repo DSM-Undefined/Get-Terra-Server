@@ -29,6 +29,7 @@ class AuthView(Resource):
         if user:
             if check_password_hash(user.password, payload['password']):
                 return jsonify({'accessToken': create_access_token(payload['id'])})
+
             else:
                 return Response('', 205)
 
