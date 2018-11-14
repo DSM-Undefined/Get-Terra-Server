@@ -38,7 +38,7 @@ class Router(Util):
         self.app.before_request(self.time_check)
 
         from view.auth import AuthView
-        self.api.add_resource(AuthView, '/auth/<gameKey>')
+        self.api.add_resource(AuthView, '/auth/<int:gameKey>')
 
         from view.map import MapView
         self.api.add_resource(MapView, '/map')
