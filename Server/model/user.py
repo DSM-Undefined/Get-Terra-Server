@@ -19,7 +19,11 @@ class UserModel(Document):
     )
 
     userId = StringField(
-        primary_key=True
+        required=True
+    )
+
+    email = StringField(
+        required=True
     )
 
     password = StringField(

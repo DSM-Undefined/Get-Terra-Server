@@ -28,10 +28,10 @@ class AuthView(Resource):
         user: UserModel = UserModel.objects(userId=payload['id'], game=game).first()
         if user:
             if check_password_hash(user.password, payload['password']):
-                return create_access_token(user.id)
+                return create_access_token(payload['id'])
             else:
                 return Response('', 205)
 
         default_team = TeamModel.objects(game=game, teamId=0).first()
-        UserModel(game, payload['id'], generate_password_hash(payload['password']), default_team).save()
-        return jsonify({'accessToken': create_access_token(user.id)})
+        UserModel(game, payload['id'], payload['email'], generate_password_hash(payload['password']), default_team).save()
+        return jsonify({'accessToken': create_access_token(payload['id'])})

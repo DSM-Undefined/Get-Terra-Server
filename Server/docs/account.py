@@ -27,7 +27,8 @@ AUTH_POST = {
     'parameters': [
         parameter('gameKey', '게임 인증키', 'uri', 'int'),
         parameter('id', '아이디'),
-        parameter('password', '비밀번호')
+        parameter('password', '비밀번호'),
+        parameter('email', '이메일')
     ],
     'responses': {
         '201': {

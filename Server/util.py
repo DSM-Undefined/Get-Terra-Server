@@ -10,7 +10,7 @@ from model.game import GameModel
 def add_claims(user_id):
     return {
         'user_id': user_id,
-        'game_key': GameModel.objects(user_id).first()['gameKey']
+        'game_key': UserModel.objects(userId=user_id).first().game.gameKey
     }
 
 
