@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flasgger import swag_from
-from flask import jsonify, abort
+from flask import jsonify, abort, g
 from flask_jwt_extended import jwt_required
 
 from docs.map import MAP_GET
