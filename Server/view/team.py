@@ -20,7 +20,7 @@ class TeamView(Resource):
         result = {'teamCount': len(team_objects)}
 
         for team in team_objects:
-            result[team.teamId] = {
+            result[str(team.teamId)] = {
                 'member': [user.userId for user in UserModel.objects(team=team)],
                 'teamColor': team.teamColor
             }
