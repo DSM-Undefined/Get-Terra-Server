@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from flask_restful import Resource
 from flasgger import swag_from
 from flask import request, jsonify, abort, Response
@@ -28,11 +30,11 @@ class AuthView(Resource):
         user: UserModel = UserModel.objects(userId=payload['id'], game=game).first()
         if user:
             if check_password_hash(user.password, payload['password']):
-                return jsonify({'accessToken': create_access_token(payload['id'])})
+                return jsonify({'accessToken': create_access_token(payload['id'], expires_delta=timedelta(days=10))})
 
             else:
                 return Response('', 205)
 
         default_team = TeamModel.objects(game=game, teamId=0).first()
         UserModel(game, payload['id'], payload['email'], generate_password_hash(payload['password']), default_team).save()
-        return jsonify({'accessToken': create_access_token(payload['id'])})
+        return jsonify({'accessToken': create_access_token(payload['id'], expires_delta=timedelta(days=10))})
