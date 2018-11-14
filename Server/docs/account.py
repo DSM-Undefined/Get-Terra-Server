@@ -31,7 +31,7 @@ AUTH_POST = {
         parameter('email', '이메일')
     ],
     'responses': {
-        '201': {
+        '200': {
             'description': '인증 또는 회원가입 성공',
             'examples': {
                 '': {
