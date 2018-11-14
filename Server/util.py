@@ -7,15 +7,6 @@ from model.user import UserModel
 from model.game import GameModel
 
 
-def check_gameKey(fn):
-    @wraps(fn)
-    def wrapper(gameKey):
-        if not GameModel.objects(gameKey=gameKey).first():
-            abort(204)
-            return fn(gameKey)
-    return wrapper
-
-
 def add_claims(user_id):
     return {
         'user_id': user_id,

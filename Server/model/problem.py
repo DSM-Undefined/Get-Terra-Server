@@ -21,13 +21,10 @@ class ProblemModel(Document):
         primary_key=True
     )
 
-    problemType = IntField(
-        required=True
-    )
-
     content = StringField(
         required=True
     )
+
     answer = StringField(
         required=True
     )
