@@ -1,19 +1,41 @@
-from pymongo import MongoClient
-from unittest import TestCase as TC
+from datetime import datetime, timedelta
+from functools import wraps
+
+from mongoengine import connect
+from mongoengine.connection import get_connection
+from unittest import TestCase
 
 from app import create_app
 
+from model.game import GameModel
+from model.team import TeamModel
 
-class TestBase(TC):
 
-    def __init__(self):
-        super(TestBase, self).__init__()
+class TCBase(TestCase):
 
+    def setUp(self):
         self.client = create_app().test_client()
-
-        self.db_name = 'get_terra_test'
-        self.mongo_client = MongoClient()
-        self.db = self.mongo_client[self.db_name]
+        connect('get-terra-test')
+        self._create_game()
+        self.
 
     def tearDown(self):
-        self.mongo_client.drop_database(self.db_name)
+        connection = get_connection()
+        connection.drop_database('get-terra-test')
+
+    def _create_game(self, game_key=100000, team_count=4):
+        GameModel(game_key, datetime.now(), datetime.now()+timedelta(days=1), team_count).save()
+
+    def _creaet_team(self, team_count=4):
+        game = GameModel.objects(gameKey=100000).first()
+        for i in range(team_count+1):
+            TeamModel(game, i, hex(i*333333)).save()
+
+def check_status_code(status_code):
+    def decorator(fn):
+        @wraps(fn)
+        def wrapper(self, *args, **kwargs):
+            rv = fn(self, *args, **kwargs)
+            self.assertEqual(rv.status_code, status_code)
+        return wrapper
+    return decorator
