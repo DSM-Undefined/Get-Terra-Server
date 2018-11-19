@@ -8,24 +8,33 @@ from random import choice
 
 from docs.solve import SOLVE_GET, SOLVE_POST
 from model.user import UserModel
+from model.game import GameModel
 from model.problem import ProblemModel
 from model.booth import BoothModel
+from util import set_g_object
 
 
 class SolveView(Resource):
 
+    def _check_time(self, game: GameModel):
+        now = datetime.now()
+        if now < game.start_time:
+            abort(406)
+        if game.end_time <= now:
+            abort(412)
+
     @swag_from(SOLVE_GET)
     @jwt_required
+    @set_g_object
     def get(self, boothName: str):
-        user = UserModel.objects(userId=get_jwt_identity()).first()
-        if not user:
-            return abort(403)
+
+        self._check_time(g.game)
 
         booth: BoothModel = BoothModel.objects(boothName=boothName).first()
         if not booth:
             return Response('', 204)
 
-        if booth.ownTeam == user.team:
+        if booth.ownTeam == g.user.team:
             return Response('', 205)
 
         if booth.nextCaptureTime > datetime.now():
@@ -42,10 +51,11 @@ class SolveView(Resource):
 
     @swag_from(SOLVE_POST)
     @jwt_required
+    @set_g_object
     def post(self, boothName: str):
-        user: UserModel = UserModel.objects(userId=get_jwt_identity()).first()
-        if not user:
-            return abort(403)
+
+        self._check_time(g.game)
+
         payload: dict = request.json
 
         problem: ProblemModel = ProblemModel.objects(problemId=payload['problemId']).first()
@@ -53,13 +63,10 @@ class SolveView(Resource):
         if not all((problem, booth)):
             return Response('', 204)
 
-        if booth.nextCaptureTime > datetime.now():
-            abort(408)
-
         if payload['answer'] != problem.answer:
             return Response('', 205)
 
-        booth.ownTeam = user.team
+        booth.ownTeam = g.user.team
         booth.nextCaptureTime = datetime.now() + timedelta(minutes=1)
         booth.save()
 
