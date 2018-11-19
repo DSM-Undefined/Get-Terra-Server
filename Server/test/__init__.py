@@ -17,7 +17,7 @@ class TCBase(TestCase):
         self.client = create_app().test_client()
         connect('get-terra-test')
         self._create_game()
-        self.
+        self._creaet_team()
 
     def tearDown(self):
         connection = get_connection()
@@ -30,6 +30,7 @@ class TCBase(TestCase):
         game = GameModel.objects(gameKey=100000).first()
         for i in range(team_count+1):
             TeamModel(game, i, hex(i*333333)).save()
+
 
 def check_status_code(status_code):
     def decorator(fn):
