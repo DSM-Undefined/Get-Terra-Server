@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from functools import wraps
 from json import dumps, loads
 
-from mongoengine import connect
 from mongoengine.connection import get_connection
 from unittest import TestCase
 
@@ -16,13 +15,12 @@ class TCBase(TestCase):
 
     def setUp(self):
         self.client = create_app().test_client()
-        connect('get-terra-test')
         self._create_game()
         self._create_team()
 
     def tearDown(self):
         connection = get_connection()
-        connection.drop_database('get-terra-test')
+        connection.drop_database('get-terra')
 
     def _create_game(self, game_key=100000, team_count=4):
         GameModel(game_key, datetime.now(), datetime.now()+timedelta(days=1), team_count).save()
