@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from functools import wraps
+from json import dumps, loads
 
 from mongoengine import connect
 from mongoengine.connection import get_connection
@@ -30,6 +31,15 @@ class TCBase(TestCase):
         game = GameModel.objects(gameKey=100000).first()
         for i in range(team_count+1):
             TeamModel(game, i, hex(i*333333)).save()
+
+    def _create_access_token(self, game_key=100000, id_='test', password='test', email='test@test.com'):
+        rv = self.client.post(
+            '/auth/' + str(game_key),
+            data=dumps(dict(id=id_, password=password, email=email)),
+            content_type='application/json'
+        )
+
+        return loads(rv.data, encoding='utf-8')['accessToken']
 
 
 def check_status_code(status_code):
