@@ -18,7 +18,7 @@ class TCBase(TestCase):
         self.client = create_app().test_client()
         connect('get-terra-test')
         self._create_game()
-        self._creaet_team()
+        self._create_team()
 
     def tearDown(self):
         connection = get_connection()
@@ -27,7 +27,7 @@ class TCBase(TestCase):
     def _create_game(self, game_key=100000, team_count=4):
         GameModel(game_key, datetime.now(), datetime.now()+timedelta(days=1), team_count).save()
 
-    def _creaet_team(self, team_count=4):
+    def _create_team(self, team_count=4):
         game = GameModel.objects(gameKey=100000).first()
         for i in range(team_count+1):
             TeamModel(game, i, hex(i*333333)).save()
