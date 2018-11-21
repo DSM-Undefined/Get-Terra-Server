@@ -19,7 +19,7 @@ class MapView(Resource):
             return abort(403)
 
         default_team: TeamModel = TeamModel.objects(team_id=0, game=g.game).first()
-        map_ = {'map': {}, 'myTeam': g.user.team.team_id, 'myTeamColor': g.user.team.teamColor}
+        map_ = {'map': {}, 'myTeam': g.user.team.team_id, 'myTeamColor': g.user.team.team_color}
         for booth in BoothModel.objects(game=g.game):
             if booth.own_team == default_team:
                 map_['map'][booth.booth_name] = -1

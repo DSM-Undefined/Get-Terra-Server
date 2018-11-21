@@ -10,6 +10,7 @@ from app import create_app
 from model.booth import BoothModel
 from model.game import GameModel
 from model.team import TeamModel
+from model.user import UserModel
 from model.problem import ProblemModel
 
 
@@ -17,7 +18,6 @@ class TCBase(TestCase):
 
     def setUp(self):
         self.client = create_app().test_client()
-
         self.init_game()
 
     def tearDown(self):
@@ -25,20 +25,21 @@ class TCBase(TestCase):
         connection.drop_database('get-terra')
 
     def init_game(self):
-        self._create_game()
+        self.test_game = self._create_game()
         self._create_team()
         self._create_problem()
         self._create_booth()
-        self.access_token = self._create_access_token()
+        self.test_user, self.access_token = self._create_user_and_access_token()
 
     def _create_game(self, game_key=100000, team_count=4):
-        self.test_game = GameModel(
+        test_game = GameModel(
             game_key=game_key,
             start_time=datetime.now(),
             end_time=datetime.now()+timedelta(days=1),
             team_count=team_count
         )
-        self.test_game.save()
+        test_game.save()
+        return test_game
 
     def _create_team(self, team_count=4):
         for i in range(team_count+1):
@@ -66,14 +67,17 @@ class TCBase(TestCase):
                 own_team=default_team,
             ).save()
 
-    def _create_access_token(self, game_key=100000, id_='test', password='test', email='test@test.com'):
+    def _create_user_and_access_token(self, game_key=100000, id_='test', password='test', email='test@test.com'):
         rv = self.client.post(
             '/auth/' + str(game_key),
             data=dumps(dict(id=id_, password=password, email=email)),
             content_type='application/json'
         )
+        token = loads(rv.data, encoding='utf-8')['accessToken']
 
-        return loads(rv.data, encoding='utf-8')['accessToken']
+        test_user = UserModel.objects(game=self.test_game, user_id=id_).first()
+
+        return test_user, f'Bearer {token}'
 
 
 def check_status_code(status_code):
