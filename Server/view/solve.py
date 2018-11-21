@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flasgger import swag_from
-from flask import Response, jsonify, abort, request
+from flask import Response, jsonify, abort, request, g
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from datetime import datetime, timedelta
