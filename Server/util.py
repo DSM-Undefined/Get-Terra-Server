@@ -10,7 +10,7 @@ from model.game import GameModel
 def add_claims(user_id):
     return {
         'user_id': user_id,
-        'game_key': UserModel.objects(userId=user_id).first().game.gameKey
+        'game_key': UserModel.objects(user_id=user_id).first().game.game_key
     }
 
 
@@ -19,11 +19,11 @@ def set_g_object(fn):
     def wrapper(*arg, **kwargs):
         jwt = get_jwt_claims()
 
-        g.game = GameModel.objects(gameKey=jwt['game_key']).first()
+        g.game = GameModel.objects(game_key=jwt['game_key']).first()
         if not g.game:
             abort(403)
 
-        g.user = UserModel.objects(userId=jwt['user_id'], game=g.game).first()
+        g.user = UserModel.objects(user_id=jwt['user_id'], game=g.game).first()
         if not g.user:
             abort(403)
         return fn(*arg, **kwargs)

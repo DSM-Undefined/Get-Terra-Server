@@ -15,8 +15,8 @@ class TeamPostTest(TCBase):
 
 <<<<<<< HEAD
     def check_user_team(self, user_id='test', team_number=0):
-        user = UserModel.objects(userId=user_id).first()
-        self.assertEqual(user.team.teamId, team_number)
+        user = UserModel.objects(user_id=user_id).first()
+        self.assertEqual(user.team.team_id, team_number)
 
     @check_status_code(201)
     def test_success_team_post(self):

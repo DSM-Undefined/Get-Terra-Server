@@ -9,4 +9,4 @@ def parameter(name, description, in_='json', type='str', required=True):
 
 
 jwt_header = parameter('Authorization', 'JWT Token', 'header')
-gameKey = parameter('gameKey', '게임 인증키', 'uri', 'int')
+game_key = parameter('gameKey', '게임 인증키', 'uri', 'int')

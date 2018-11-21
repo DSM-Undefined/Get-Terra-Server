@@ -18,16 +18,16 @@ class BoothModel(Document):
         reverse_delete_rule=CASCADE
     )
     
-    boothName = StringField(
+    booth_name = StringField(
         primary_key=True,
         required=True
     )
 
-    ownTeam = ReferenceField(
+    own_team = ReferenceField(
         document_type='TeamModel',
         required=True
     )
 
-    nextCaptureTime = DateTimeField(
+    next_capture_time = DateTimeField(
         default=datetime(2001, 4, 20)
     )

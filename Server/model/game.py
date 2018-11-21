@@ -6,7 +6,7 @@ class GameModel(Document):
         'collection': 'game'
     }
 
-    gameKey = IntField(
+    game_key = IntField(
         primary_key=True
     )
 
@@ -18,7 +18,7 @@ class GameModel(Document):
         required=True
     )
 
-    teamCount = IntField(
+    team_count = IntField(
         required=True,
         min_value=0,
         max_value=100

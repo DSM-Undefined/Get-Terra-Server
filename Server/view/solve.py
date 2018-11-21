@@ -30,20 +30,20 @@ class SolveView(Resource):
 
         self._check_time(g.game)
 
-        booth: BoothModel = BoothModel.objects(boothName=boothName).first()
+        booth: BoothModel = BoothModel.objects(booth_name=boothName).first()
         if not booth:
             return Response('', 204)
 
-        if booth.ownTeam == g.user.team:
+        if booth.own_team == g.user.team:
             return Response('', 205)
 
-        if booth.nextCaptureTime > datetime.now():
+        if booth.next_capture_time > datetime.now():
             abort(408)
 
         problem: ProblemModel = choice(ProblemModel.objects())
 
         response = {'boothName': boothName,
-                    'problemId': problem.problemId,
+                    'problemId': problem.problem_id,
                     'content': problem.content,
                     'choices': problem.choices}
 
@@ -58,16 +58,16 @@ class SolveView(Resource):
 
         payload: dict = request.json
 
-        problem: ProblemModel = ProblemModel.objects(problemId=payload['problemId']).first()
-        booth: BoothModel = BoothModel.objects(boothName=boothName).first()
+        problem: ProblemModel = ProblemModel.objects(problem_id=payload['problemId']).first()
+        booth: BoothModel = BoothModel.objects(booth_name=boothName).first()
         if not all((problem, booth)):
             return Response('', 204)
 
         if payload['answer'] != problem.answer:
             return Response('', 205)
 
-        booth.ownTeam = g.user.team
-        booth.nextCaptureTime = datetime.now() + timedelta(minutes=1)
+        booth.own_team = g.user.team
+        booth.next_capture_time = datetime.now() + timedelta(minutes=1)
         booth.save()
 
         return Response('', 201)

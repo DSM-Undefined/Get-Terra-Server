@@ -14,10 +14,10 @@ class TeamModel(Document):
         reverse_delete_rule=CASCADE
     )
 
-    teamId = IntField(
+    team_id = IntField(
         required=True
     )
 
-    teamColor = StringField(
+    team_color = StringField(
         required=True
     )

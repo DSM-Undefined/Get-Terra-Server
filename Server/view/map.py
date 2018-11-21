@@ -18,14 +18,14 @@ class MapView(Resource):
         if not g.user:
             return abort(403)
 
-        default_team: TeamModel = TeamModel.objects(teamId=0, game=g.game).first()
-        map_ = {'map': {}, 'myTeam': g.user.team.teamId, 'myTeamColor': g.user.team.teamColor}
+        default_team: TeamModel = TeamModel.objects(team_id=0, game=g.game).first()
+        map_ = {'map': {}, 'myTeam': g.user.team.team_id, 'myTeamColor': g.user.team.teamColor}
         for booth in BoothModel.objects(game=g.game):
-            if booth.ownTeam == default_team:
-                map_['map'][booth.boothName] = -1
-            elif booth.ownTeam == g.user.team:
-                map_['map'][booth.boothName] = 1
+            if booth.own_team == default_team:
+                map_['map'][booth.booth_name] = -1
+            elif booth.own_team == g.user.team:
+                map_['map'][booth.booth_name] = 1
             else:
-                map_['map'][booth.boothName] = 0
+                map_['map'][booth.booth_name] = 0
 
         return jsonify(map_)

@@ -33,10 +33,10 @@ class TCBase(TestCase):
 
     def _create_game(self, game_key=100000, team_count=4):
         self.test_game = GameModel(
-            gameKey=game_key,
+            game_key=game_key,
             start_time=datetime.now(),
             end_time=datetime.now()+timedelta(days=1),
-            teamCount=team_count
+            team_count=team_count
         )
         self.test_game.save()
 
@@ -44,26 +44,26 @@ class TCBase(TestCase):
         for i in range(team_count+1):
             TeamModel(
                 game=self.test_game,
-                teamId=i,
-                teamColor=hex(i*333333)
+                team_id=i,
+                team_color=hex(i*333333)
             ).save()
 
     def _create_problem(self):
         ProblemModel(
             game=self.test_game,
-            problemId=1,
+            problem_id=1,
             content='test',
             answer='1',
             choices=['1', '2', '3', '4']
         ).save()
 
     def _create_booth(self):
-        default_team = TeamModel.objects(teamId=0).first()
+        default_team = TeamModel.objects(team_id=0).first()
         for i in range(5):
             BoothModel(
                 game=self.test_game,
-                boothName=f'booth{i}',
-                ownTeam=default_team,
+                booth_name=f'booth{i}',
+                own_team=default_team,
             ).save()
 
     def _create_access_token(self, game_key=100000, id_='test', password='test', email='test@test.com'):

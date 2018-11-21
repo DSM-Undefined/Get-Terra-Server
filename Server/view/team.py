@@ -20,9 +20,9 @@ class TeamView(Resource):
         result = {'teamCount': len(team_objects)}
 
         for team in team_objects:
-            result[str(team.teamId)] = {
-                'member': [user.userId for user in UserModel.objects(team=team)],
-                'teamColor': team.teamColor
+            result[str(team.team_id)] = {
+                'member': [user.user_id for user in UserModel.objects(team=team)],
+                'teamColor': team.team_color
             }
 
         return jsonify(result)
@@ -34,10 +34,10 @@ class TeamView(Resource):
         if not g.user:
             abort(403)
 
-        if g.user.team.teamId != 0:
+        if g.user.team.team_id != 0:
             return Response('', 204)
 
-        team: TeamModel = TeamModel.objects(teamId=int(request.args.get('team'))).first()
+        team: TeamModel = TeamModel.objects(team_id=int(request.args.get('team'))).first()
         if (not team) or len(UserModel.objects(team=team)) > 5:
             return Response('', 205)
 

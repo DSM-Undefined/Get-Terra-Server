@@ -17,7 +17,7 @@ class ProblemModel(Document):
         reverse_delete_rule=CASCADE
     )
 
-    problemId = IntField(
+    problem_id = IntField(
         primary_key=True
     )
 

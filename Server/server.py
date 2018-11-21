@@ -13,7 +13,7 @@ def a():
     teams = TeamModel.objects(teamName__ne='empty')
     for booth in BoothModel.objects():
         t = choice(teams)
-        booth.ownTeam = t
+        booth.own_team = t
         booth.save()
     return '', 200
 

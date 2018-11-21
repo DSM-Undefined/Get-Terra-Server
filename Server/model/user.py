@@ -18,7 +18,7 @@ class UserModel(Document):
         reverse_delete_rule=CASCADE
     )
 
-    userId = StringField(
+    user_id = StringField(
         required=True
     )
 
