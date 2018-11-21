@@ -63,6 +63,9 @@ class SolveView(Resource):
         if not all((problem, booth)):
             return Response('', 204)
 
+        if booth.next_capture_time > datetime.now():
+            abort(408)
+
         if payload['answer'] != problem.answer:
             return Response('', 205)
 
