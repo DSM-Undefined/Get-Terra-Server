@@ -1,17 +1,13 @@
 from test import TCBase, check_status_code
+from test.requests import check_game_key_request
 
 
 class CheckGameKeyTest(TCBase):
 
-    def check_game_key_request(self, game_key=100000):
-        return self.client.get(
-            '/auth/'+str(game_key)
-        )
+    @check_status_code(200)
+    def test_success_check_game_key(self):
+        return check_game_key_request(self)
 
     @check_status_code(204)
     def test_wrong_game_key(self):
-        return self.check_game_key_request(111111)
-
-    @check_status_code(200)
-    def test_success_check_game_key(self):
-        return self.check_game_key_request()
+        return check_game_key_request(self, 111111)

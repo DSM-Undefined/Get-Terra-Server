@@ -1,19 +1,14 @@
 from json import loads
 
 from test import TCBase, check_status_code
+from test.requests import map_get_request
 
 
 class MapGetTest(TCBase):
 
-    def map_get_request(self):
-        return self.client.get(
-            '/map',
-            headers={'Authorization': self.access_token}
-        )
-
     @check_status_code(200)
     def test_success_map_get(self):
-        rv = self.map_get_request()
+        rv = map_get_request(self)
         res_json = loads(rv.data, encoding='utf-8')
 
         self.assertEqual(res_json['myTeam'], self.test_user.team.team_id)
