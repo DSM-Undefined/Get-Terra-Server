@@ -20,13 +20,6 @@ class Util:
 
         return 'hello'
 
-    def time_check(self):
-        if 'solve' in request.path or 'rank' in request.path or 'web' in request.path:
-            if datetime.now() < current_app.config['START_TIME']:
-                abort(406)
-            if current_app.config['END_TIME'] < datetime.now():
-                abort(412)
-
 
 class Router(Util):
     def __init__(self, app: Flask):
@@ -35,7 +28,6 @@ class Router(Util):
 
     def register(self):
         self.app.add_url_rule('/hook', view_func=self.webhook_event_handler, methods=['POST'])
-        self.app.before_request(self.time_check)
 
         from view.auth import AuthView
         self.api.add_resource(AuthView, '/auth/<int:gameKey>')
