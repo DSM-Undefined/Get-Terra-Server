@@ -1,13 +1,12 @@
 from flask_restful import Resource
 from flasgger import swag_from
 from flask import Response, jsonify, abort, request, g
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 from datetime import datetime, timedelta
 from random import choice
 
 from docs.solve import SOLVE_GET, SOLVE_POST
-from model.user import UserModel
 from model.game import GameModel
 from model.problem import ProblemModel
 from model.booth import BoothModel

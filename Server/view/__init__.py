@@ -1,9 +1,8 @@
-from datetime import datetime
 import os
 import threading
 import time
 
-from flask import request, Flask, current_app, abort, jsonify
+from flask import request, Flask
 from flask_restful import Api
 
 

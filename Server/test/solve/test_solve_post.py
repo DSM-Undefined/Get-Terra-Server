@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from json import dumps
 
 from model.booth import BoothModel
 from test import TCBase, check_status_code
