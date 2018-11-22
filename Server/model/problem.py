@@ -11,7 +11,7 @@ class ProblemModel(Document):
         'collection': 'problem'
     }
 
-    game = ReferenceField(
+    game: GameModel = ReferenceField(
         document_type=GameModel,
         required=True,
         reverse_delete_rule=CASCADE

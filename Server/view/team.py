@@ -1,3 +1,5 @@
+from typing import List
+
 from flask_restful import Resource
 from flasgger import swag_from
 from flask_jwt_extended import jwt_required
@@ -15,8 +17,8 @@ class TeamView(Resource):
     @swag_from(TEAM_GET)
     @jwt_required
     @set_g_object
-    def get(self):
-        team_objects = TeamModel.objects(game=g.game)
+    def get(self) -> Response:
+        team_objects: List[TeamModel] = TeamModel.objects(game=g.game)
         result = {'teamCount': len(team_objects)}
 
         for team in team_objects:
@@ -30,7 +32,7 @@ class TeamView(Resource):
     @swag_from(TEAM_POST)
     @jwt_required
     @set_g_object
-    def post(self):
+    def post(self) -> Response:
         if not g.user:
             abort(403)
 

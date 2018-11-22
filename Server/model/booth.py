@@ -2,6 +2,7 @@ from mongoengine import *
 from datetime import datetime
 
 from model.game import GameModel
+from model.team import TeamModel
 
 
 class BoothModel(Document):
@@ -12,7 +13,7 @@ class BoothModel(Document):
         "collection": "booth"
     }
 
-    game = ReferenceField(
+    game: GameModel = ReferenceField(
         document_type=GameModel,
         required=True,
         reverse_delete_rule=CASCADE
@@ -23,8 +24,8 @@ class BoothModel(Document):
         required=True
     )
 
-    own_team = ReferenceField(
-        document_type='TeamModel',
+    own_team: TeamModel = ReferenceField(
+        document_type=TeamModel,
         required=True
     )
 

@@ -1,6 +1,7 @@
 from mongoengine import *
 
 from model.game import GameModel
+from model.team import TeamModel
 
 
 class UserModel(Document):
@@ -12,7 +13,7 @@ class UserModel(Document):
         'collection': 'user'
     }
 
-    game = ReferenceField(
+    game: GameModel = ReferenceField(
         document_type=GameModel,
         required=True,
         reverse_delete_rule=CASCADE
@@ -30,7 +31,7 @@ class UserModel(Document):
         required=True
     )
 
-    team = ReferenceField(
-        document_type='TeamModel',
+    team: TeamModel = ReferenceField(
+        document_type=TeamModel,
         required=True
     )

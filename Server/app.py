@@ -10,8 +10,8 @@ from view import Router
 from util import add_claims
 
 
-def create_app():
-    app = Flask(__name__)
+def create_app() -> Flask:
+    app: Flask = Flask(__name__)
 
     app.config.from_object(Config)
     Router(app).register()

@@ -19,11 +19,11 @@ def set_g_object(fn):
     def wrapper(*arg, **kwargs):
         jwt = get_jwt_claims()
 
-        g.game = GameModel.objects(game_key=jwt['game_key']).first()
+        g.game: GameModel = GameModel.objects(game_key=jwt['game_key']).first()
         if not g.game:
             abort(403)
 
-        g.user = UserModel.objects(user_id=jwt['user_id'], game=g.game).first()
+        g.user: UserModel = UserModel.objects(user_id=jwt['user_id'], game=g.game).first()
         if not g.user:
             abort(403)
         return fn(*arg, **kwargs)

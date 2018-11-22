@@ -8,7 +8,7 @@ class TeamModel(Document):
         'collection': 'team'
     }
 
-    game = ReferenceField(
+    game: GameModel = ReferenceField(
         document_type=GameModel,
         required=True,
         reverse_delete_rule=CASCADE

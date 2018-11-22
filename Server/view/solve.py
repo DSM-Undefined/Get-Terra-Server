@@ -1,10 +1,10 @@
+from datetime import datetime, timedelta
+from random import choice
+
 from flask_restful import Resource
 from flasgger import swag_from
 from flask import Response, jsonify, abort, request, g
 from flask_jwt_extended import jwt_required
-
-from datetime import datetime, timedelta
-from random import choice
 
 from docs.solve import SOLVE_GET, SOLVE_POST
 from model.game import GameModel
@@ -16,7 +16,7 @@ from util import set_g_object
 class SolveView(Resource):
 
     def _check_time(self, game: GameModel):
-        now = datetime.now()
+        now: datetime = datetime.now()
         if now < game.start_time:
             abort(406)
         if game.end_time <= now:
@@ -25,7 +25,7 @@ class SolveView(Resource):
     @swag_from(SOLVE_GET)
     @jwt_required
     @set_g_object
-    def get(self, boothName: str):
+    def get(self, boothName: str) -> Response:
 
         self._check_time(g.game)
 
@@ -51,7 +51,7 @@ class SolveView(Resource):
     @swag_from(SOLVE_POST)
     @jwt_required
     @set_g_object
-    def post(self, boothName: str):
+    def post(self, boothName: str) -> Response:
 
         self._check_time(g.game)
 
